@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRCredentialsView : UIView
+@interface CRCredentialsView : UIView <UITextFieldDelegate>
 
 @end
