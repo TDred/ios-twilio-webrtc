@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRCredentialsDelegate.h"
 
-@interface CRCredentialsViewController : UIViewController
+@interface CRCredentialsViewController : UIViewController <CRCredentialsDelegate>
+
+
 
 @end

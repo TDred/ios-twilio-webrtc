@@ -10,15 +10,15 @@
 
 @implementation UIButton (ButtonThemes)
 
-- (void)roundedButton:(UIColor *)color withSecondaryColor:(UIColor *)secondaryColor withFrame:(CGRect)frame
+- (void)roundedButton:(UIColor *)color withSecondaryColor:(UIColor *)secondaryColor withSize:(CGSize)size
 {
     UIButton *button = self;
     button.titleLabel.font = [UIFont systemFontOfSize:22.0];
     
     [button setBackgroundImage:[self imageWithColor:color] forState:UIControlStateNormal];
     [button setBackgroundImage:[self imageWithColor:secondaryColor] forState:UIControlStateHighlighted];
-    button.layer.frame = frame;
-    button.layer.cornerRadius = frame.size.height / 2.0;
+    //button.layer.frame = frame;
+    button.layer.cornerRadius = size.height / 2.0;
     button.layer.masksToBounds = YES;
 }
 

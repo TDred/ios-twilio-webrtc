@@ -7,10 +7,11 @@
 //
 
 #import "CRVideoConnectonViewController.h"
+#import "CRVideoConnectionView.h"
 
 @interface CRVideoConnectonViewController ()
-{
-}
+
+@property (nonatomic) CRVideoConnectionView *connectionView;
 
 @end
 
@@ -18,7 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.connectionView = [[CRVideoConnectionView alloc] init];
+    self.view = self.connectionView;
 }
 
 - (void)didReceiveMemoryWarning {

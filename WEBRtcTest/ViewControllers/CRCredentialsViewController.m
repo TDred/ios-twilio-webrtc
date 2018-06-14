@@ -7,11 +7,12 @@
 //
 
 #import "CRCredentialsViewController.h"
+#import "CRVideoConnectonViewController.h"
 #import "CRCredentialsView.h"
 
 @interface CRCredentialsViewController ()
 
-@property (nonatomic) UIView* credentialsView;
+@property (nonatomic) CRCredentialsView* credentialsView;
 
 @end
 
@@ -20,12 +21,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.credentialsView = [[CRCredentialsView alloc] init];
+    self.credentialsView.delegate = self;
     self.view = self.credentialsView;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.credentialsView focusOnFirstInput];
+}
+
+-(void)didEnterCredentials:(NSString *)identity roomName:(NSString *)roomName
+{
+    CRVideoConnectonViewController *videoViewController = [[CRVideoConnectonViewController alloc] init];
+    videoViewController.identity = identity;
+    videoViewController.room = roomName;
+    [self presentViewController:videoViewController animated:YES completion:nil];
 }
 
 @end

@@ -10,4 +10,7 @@
 
 @interface CRVideoConnectonViewController : UIViewController
 
+@property (nonatomic,copy) NSString* identity;
+@property (nonatomic,copy) NSString* room;
+
 @end

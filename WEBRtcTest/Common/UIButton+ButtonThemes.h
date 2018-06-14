@@ -10,6 +10,6 @@
 
 @interface UIButton (ButtonThemes)
 
--(void) roundedButton :(UIColor*)color withSecondaryColor:(UIColor*)color withFrame:(CGRect)frame;
+-(void) roundedButton :(UIColor*)color withSecondaryColor:(UIColor*)color withSize:(CGSize)size;
 
 @end

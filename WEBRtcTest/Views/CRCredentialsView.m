@@ -41,6 +41,7 @@
     [self addSubview:self.lblRoom];
     
     self.btnConnect = [[UIButton alloc] init];
+    [self.btnConnect addTarget:self action:@selector(connect:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnConnect setTitle:@"CONNECT" forState:UIControlStateNormal];
     [self addSubview:self.btnConnect];
     
@@ -94,20 +95,33 @@
     return self;
 }
 
-#pragma mark - UITextFieldDelegate implementation
+-(void)connect:(id)sender
+{
+    [self.delegate didEnterCredentials:self.txtName.text roomName:self.txtRoom.text];
+}
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
     CGRect buttonFrame = self.btnConnect.frame;
-    [self.btnConnect roundedButton:RGB(0xCC3728) withSecondaryColor:RGB(0xFF8A7E) withFrame:buttonFrame];
+    [self.btnConnect roundedButton:RGB(0xCC3728) withSecondaryColor:RGB(0xFF8A7E) withSize:buttonFrame.size];
     
     CGRect nameFrame = self.txtName.frame;
-    [self.txtName setDefaultTheme:RGB(0xD9D3D2) withBottomBorderColor:RGB(0xCC3728) withFrame:nameFrame];
+    [self.txtName setDefaultTheme:RGB(0xD9D3D2) withBottomBorderColor:RGB(0xCC3728) withSize:nameFrame.size];
     
     CGRect roomFrame = self.txtRoom.frame;
-    [self.txtRoom setDefaultTheme:RGB(0xD9D3D2) withBottomBorderColor:RGB(0xCC3728) withFrame:roomFrame];
+    [self.txtRoom setDefaultTheme:RGB(0xD9D3D2) withBottomBorderColor:RGB(0xCC3728) withSize:roomFrame.size];
 }
+
+-(void)focusOnFirstInput
+{
+    if (self.txtName.canBecomeFirstResponder)
+    {
+        [self.txtName becomeFirstResponder];
+    }
+}
+
+#pragma mark - UITextFieldDelegate implementation
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {

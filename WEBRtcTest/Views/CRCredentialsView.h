@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRCredentialsDelegate.h"
 
 @interface CRCredentialsView : UIView <UITextFieldDelegate>
+
+@property (nonatomic, weak) id<CRCredentialsDelegate> delegate;
+
+-(void)focusOnFirstInput;
 
 @end

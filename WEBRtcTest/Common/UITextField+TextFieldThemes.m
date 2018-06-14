@@ -11,21 +11,20 @@
 
 @implementation UITextField (TextFieldThemes)
 
--(void)setDefaultTheme:(UIColor *)backgroundColor withBottomBorderColor:(UIColor *)bottomBorderColor withFrame:(CGRect)frame
+-(void)setDefaultTheme:(UIColor *)backgroundColor withBottomBorderColor:(UIColor *)bottomBorderColor withSize:(CGSize)size
 {
     UITextField *textField = self;
     textField.backgroundColor = backgroundColor;
     
-    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, frame.size.height)];
+    UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, size.height)];
     textField.leftView = paddingView;
     textField.leftViewMode = UITextFieldViewModeAlways;
     
     CAShapeLayer *bottomBorderLayer = [[CAShapeLayer alloc] init];
-    //bottomBorderLayer.frame = frame;
     
     UIBezierPath *bottomBorder = [[UIBezierPath alloc] init];
-    [bottomBorder moveToPoint:CGPointMake(0, frame.size.height)];
-    [bottomBorder addLineToPoint:CGPointMake(frame.size.width, frame.size.height)];
+    [bottomBorder moveToPoint:CGPointMake(0, size.height)];
+    [bottomBorder addLineToPoint:CGPointMake(size.width, size.height)];
     bottomBorder.lineWidth = 3.0f;
     [bottomBorder closePath];
     

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRUpdatableView.h"
 
-@interface CRVideoConnectionView : UIView
+@interface CRVideoConnectionView : UIView <CRLayoutUpdatedDelegate>
 
 @end

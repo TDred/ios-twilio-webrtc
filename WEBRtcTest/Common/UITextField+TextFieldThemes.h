@@ -10,6 +10,6 @@
 
 @interface UITextField (TextFieldThemes)
 
--(void) setDefaultTheme : (UIColor*) backgroundColor withBottomBorderColor:(UIColor*) bottomBorderColor withFrame: (CGRect) frame;
+-(void) setDefaultTheme : (UIColor*) backgroundColor withBottomBorderColor:(UIColor*) bottomBorderColor withSize: (CGSize) size;
 
 @end
