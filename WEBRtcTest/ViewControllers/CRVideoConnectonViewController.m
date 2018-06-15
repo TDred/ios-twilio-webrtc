@@ -7,7 +7,6 @@
 //
 
 #import "CRVideoConnectonViewController.h"
-#import "CRVideoConnectionView.h"
 
 @interface CRVideoConnectonViewController ()
 
@@ -21,6 +20,7 @@
     [super viewDidLoad];
     self.connectionView = [[CRVideoConnectionView alloc] init];
     self.view = self.connectionView;
+    self.connectionView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,6 +28,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)endCall
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 /*
 #pragma mark - Navigation
 

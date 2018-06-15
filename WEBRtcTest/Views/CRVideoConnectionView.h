@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CRUpdatableView.h"
+#import "CRVideoViewDelegate.h"
 
 @interface CRVideoConnectionView : UIView <CRLayoutUpdatedDelegate>
+
+@property (nonatomic, weak) id<CRVideoViewDelegate> delegate;
 
 @end

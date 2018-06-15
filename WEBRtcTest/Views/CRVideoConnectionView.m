@@ -11,14 +11,14 @@
 #import <Masonry/Masonry.h>
 #import "CRVideoConnectionView.h"
 #import "AppDelegate.h"
-#import "UIButton+ButtonThemes.h"
+#import "CRTwoStateButton.h"
 
 @interface CRVideoConnectionView()
 
 @property (nonatomic) CRUpdatableView *vControlPanel;
-@property (nonatomic) UIButton *btnEndCall;
-@property (nonatomic) UIButton *btnTurnOffVideo;
-@property (nonatomic) UIButton *btnMute;
+@property (nonatomic) CRTwoStateButton *btnEndCall;
+@property (nonatomic) CRTwoStateButton *btnTurnOffVideo;
+@property (nonatomic) CRTwoStateButton *btnMute;
 @property (nonatomic) UILabel *lblStatus;
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic) BOOL isControlPanelShown;
@@ -44,13 +44,20 @@
     self.vControlPanel.backgroundColor = UIColor.clearColor;
     [self addSubview:self.vControlPanel];
     
-    self.btnEndCall = [[UIButton alloc] init];
+    
+    UIImage *phoneImage = [UIImage imageNamed:@"phone.png"];
+    self.btnEndCall = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:phoneImage imageOff:nil];
+    [self.btnEndCall addTarget:self action:@selector(endCall:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnEndCall];
     
-    self.btnMute = [[UIButton alloc] init];
+    UIImage *muteImage = [UIImage imageNamed:@"microphone.png"];
+    UIImage *unmuteImage = [UIImage imageNamed:@"microphone.off.png"];
+    self.btnMute = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:muteImage imageOff:unmuteImage];
     [self.vControlPanel addSubview:self.btnMute];
     
-    self.btnTurnOffVideo = [[UIButton alloc] init];
+    UIImage *cameraOnImage = [UIImage imageNamed:@"video.png"];
+    UIImage *cameraOffImage = [UIImage imageNamed:@"video.off.png"];
+    self.btnTurnOffVideo = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:cameraOnImage imageOff:cameraOffImage];
     [self.vControlPanel addSubview:self.btnTurnOffVideo];
     
     UIView *superview = self;
@@ -104,18 +111,18 @@
     self.isControlPanelShown = !self.isControlPanelShown;
 }
 
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-}
-
+//do additional setup for control panel views if needed
 -(void)didUpdateLayout
 {
-    CGSize buttonSize  = self.btnMute.frame.size;
-    [self.btnMute roundedButton:RGB(0xCC3728) withSecondaryColor:RGB(0xFF8A7E) withSize:buttonSize];
-    [self.btnTurnOffVideo roundedButton:RGB(0xCC3728) withSecondaryColor:RGB(0xFF8A7E) withSize:buttonSize];
-    [self.btnEndCall roundedButton:RGB(0xCC3728) withSecondaryColor:RGB(0xFF8A7E) withSize:buttonSize];
+    
 }
+
+#pragma mark - Actions
+-(void)endCall:(id)sender
+{
+    [self.delegate endCall];
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

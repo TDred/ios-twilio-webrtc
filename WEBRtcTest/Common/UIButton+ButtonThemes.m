@@ -17,7 +17,6 @@
     
     [button setBackgroundImage:[self imageWithColor:color] forState:UIControlStateNormal];
     [button setBackgroundImage:[self imageWithColor:secondaryColor] forState:UIControlStateHighlighted];
-    //button.layer.frame = frame;
     button.layer.cornerRadius = size.height / 2.0;
     button.layer.masksToBounds = YES;
 }

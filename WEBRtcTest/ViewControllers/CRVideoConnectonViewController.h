@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CRVideoConnectionView.h"
 
-@interface CRVideoConnectonViewController : UIViewController
+@interface CRVideoConnectonViewController : UIViewController <CRVideoViewDelegate>
 
 @property (nonatomic,copy) NSString* identity;
 @property (nonatomic,copy) NSString* room;

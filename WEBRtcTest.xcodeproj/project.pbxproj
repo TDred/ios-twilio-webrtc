@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4290DB6C20D2C7EC002E78AE /* CRUpdatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */; };
+		4290DB7020D40702002E78AE /* CRTwoStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6F20D40702002E78AE /* CRTwoStateButton.m */; };
 		6B0E27472090CDF0009B7CF3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */; };
 		6B0E274B2091BB7D009B7CF3 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0E274A2091BB7B009B7CF3 /* beep.mp3 */; };
 		6B8310F5208F6AEC003960F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8310F4208F6AEC003960F2 /* AppDelegate.m */; };
@@ -55,6 +56,9 @@
 		4290DB6A20D2C7EC002E78AE /* CRUpdatableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRUpdatableView.h; sourceTree = "<group>"; };
 		4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRUpdatableView.m; sourceTree = "<group>"; };
 		4290DB6D20D2C81A002E78AE /* CRLayoutUpdatedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRLayoutUpdatedDelegate.h; sourceTree = "<group>"; };
+		4290DB6E20D40702002E78AE /* CRTwoStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRTwoStateButton.h; sourceTree = "<group>"; };
+		4290DB6F20D40702002E78AE /* CRTwoStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRTwoStateButton.m; sourceTree = "<group>"; };
+		4290DB7120D42109002E78AE /* CRVideoViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoViewDelegate.h; sourceTree = "<group>"; };
 		6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6B0E274A2091BB7B009B7CF3 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WEBRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,7 @@
 			children = (
 				4290DB6920D2A47D002E78AE /* CRCredentialsDelegate.h */,
 				4290DB6D20D2C81A002E78AE /* CRLayoutUpdatedDelegate.h */,
+				4290DB7120D42109002E78AE /* CRVideoViewDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -134,6 +139,8 @@
 				6BACF82520D14A4D00E630F7 /* CRCredentialsView.m */,
 				4290DB6A20D2C7EC002E78AE /* CRUpdatableView.h */,
 				4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */,
+				4290DB6E20D40702002E78AE /* CRTwoStateButton.h */,
+				4290DB6F20D40702002E78AE /* CRTwoStateButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +324,7 @@
 				6B831103208F6AF5003960F2 /* main.m in Sources */,
 				6BACF82020D12B5E00E630F7 /* AuthService.m in Sources */,
 				6BA83B2F20CBDD73008E84C2 /* CRVideoConnectionView.m in Sources */,
+				4290DB7020D40702002E78AE /* CRTwoStateButton.m in Sources */,
 				6BACF82C20D15CDB00E630F7 /* UITextField+TextFieldThemes.m in Sources */,
 				4290DB6C20D2C7EC002E78AE /* CRUpdatableView.m in Sources */,
 				6B8310F5208F6AEC003960F2 /* AppDelegate.m in Sources */,
