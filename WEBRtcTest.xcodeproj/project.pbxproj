@@ -28,7 +28,7 @@
 		6BACF81720D1269D00E630F7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81020D1269C00E630F7 /* SystemConfiguration.framework */; };
 		6BACF81920D128C000E630F7 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81820D128BF00E630F7 /* Masonry.framework */; };
 		6BACF81A20D128C000E630F7 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81820D128BF00E630F7 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6BACF82020D12B5E00E630F7 /* AuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF81F20D12B5E00E630F7 /* AuthService.m */; };
+		6BACF82020D12B5E00E630F7 /* CRVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */; };
 		6BACF82320D14A3400E630F7 /* CRCredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82220D14A3400E630F7 /* CRCredentialsViewController.m */; };
 		6BACF82620D14A4D00E630F7 /* CRCredentialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82520D14A4D00E630F7 /* CRCredentialsView.m */; };
 		6BACF82920D15CAE00E630F7 /* UILabel+LabelThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82820D15CAE00E630F7 /* UILabel+LabelThemes.m */; };
@@ -85,8 +85,8 @@
 		6BACF80F20D1269C00E630F7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		6BACF81020D1269C00E630F7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6BACF81820D128BF00E630F7 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = WEBRtcTest/Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
-		6BACF81E20D12B5E00E630F7 /* AuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthService.h; sourceTree = "<group>"; };
-		6BACF81F20D12B5E00E630F7 /* AuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthService.m; sourceTree = "<group>"; };
+		6BACF81E20D12B5E00E630F7 /* CRVideoAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoAuthService.h; sourceTree = "<group>"; };
+		6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRVideoAuthService.m; sourceTree = "<group>"; };
 		6BACF82120D14A3400E630F7 /* CRCredentialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRCredentialsViewController.h; sourceTree = "<group>"; };
 		6BACF82220D14A3400E630F7 /* CRCredentialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRCredentialsViewController.m; sourceTree = "<group>"; };
 		6BACF82420D14A4D00E630F7 /* CRCredentialsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRCredentialsView.h; sourceTree = "<group>"; };
@@ -215,8 +215,8 @@
 		6BACF81C20D12AB900E630F7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6BACF81E20D12B5E00E630F7 /* AuthService.h */,
-				6BACF81F20D12B5E00E630F7 /* AuthService.m */,
+				6BACF81E20D12B5E00E630F7 /* CRVideoAuthService.h */,
+				6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */,
 				6BACF82720D15CAE00E630F7 /* UILabel+LabelThemes.h */,
 				6BACF82820D15CAE00E630F7 /* UILabel+LabelThemes.m */,
 				6BACF82A20D15CDB00E630F7 /* UITextField+TextFieldThemes.h */,
@@ -322,7 +322,7 @@
 				6BACF82620D14A4D00E630F7 /* CRCredentialsView.m in Sources */,
 				6BACF82320D14A3400E630F7 /* CRCredentialsViewController.m in Sources */,
 				6B831103208F6AF5003960F2 /* main.m in Sources */,
-				6BACF82020D12B5E00E630F7 /* AuthService.m in Sources */,
+				6BACF82020D12B5E00E630F7 /* CRVideoAuthService.m in Sources */,
 				6BA83B2F20CBDD73008E84C2 /* CRVideoConnectionView.m in Sources */,
 				4290DB7020D40702002E78AE /* CRTwoStateButton.m in Sources */,
 				6BACF82C20D15CDB00E630F7 /* UITextField+TextFieldThemes.m in Sources */,
@@ -470,7 +470,7 @@
 					"$(PROJECT_DIR)/WEBRtcTest/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/WEBRtcTest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -493,7 +493,7 @@
 					"$(PROJECT_DIR)/WEBRtcTest/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/WEBRtcTest/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -11,5 +11,7 @@
 @protocol CRVideoViewDelegate <NSObject>
 
 -(void)endCall;
+-(void)switchCamera;
+-(void)switchMicrophone:(BOOL)isOn;
 
 @end

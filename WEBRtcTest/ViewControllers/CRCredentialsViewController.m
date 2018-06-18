@@ -40,7 +40,7 @@
 {
     CRVideoConnectonViewController *videoViewController = [[CRVideoConnectonViewController alloc] init];
     videoViewController.identity = identity;
-    videoViewController.room = roomName;
+    videoViewController.roomName = roomName;
     [self presentViewController:videoViewController animated:YES completion:nil];
 }
 

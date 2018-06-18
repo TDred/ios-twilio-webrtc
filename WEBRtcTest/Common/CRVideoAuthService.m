@@ -6,15 +6,15 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "AuthService.h"
+#import "CRVideoAuthService.h"
 
-static NSString* const AUTH_SERVICE_URL = @"httpp://192.168.7.84:8080/token?identity=%@";
+static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?identity=%@";
 
-@interface AuthService ()
+@interface CRVideoAuthService ()
 
 @end
 
-@implementation AuthService
+@implementation CRVideoAuthService
 
 -(instancetype)init
 {
@@ -28,25 +28,27 @@ static NSString* const AUTH_SERVICE_URL = @"httpp://192.168.7.84:8080/token?iden
     return self;
 }
 
-+(AuthService*)sharedService
++(CRVideoAuthService*)sharedService
 {
-    static AuthService* sharedService;
+    static CRVideoAuthService* sharedService;
     static dispatch_once_t onceToken;
     
     if (!sharedService) {
         dispatch_once(&onceToken, ^{
-            sharedService = [sharedService initPrivate];
+            sharedService = [[CRVideoAuthService alloc] initPrivate];
         });
     }
     
     return sharedService;
 }
 
--(void)getAuthToken:(NSString *)userName completionBlock:(void (^)(NSString *))completionBlock
+-(void)getAuthToken:(NSString *)userName fromURL:(NSString*)URL completionBlock:(void (^)(NSString *))completionBlock
 {
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:AUTH_SERVICE_URL,userName]];
+    NSURL *url = URL
+            ? [NSURL URLWithString:[NSString stringWithFormat:URL,userName]]
+            : [NSURL URLWithString:[NSString stringWithFormat:AUTH_SERVICE_URL,userName]];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
