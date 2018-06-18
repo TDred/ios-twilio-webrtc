@@ -20,7 +20,19 @@
     textField.leftView = paddingView;
     textField.leftViewMode = UITextFieldViewModeAlways;
     
+    CALayer *decorationLayer;
+    for (CALayer* layer in textField.layer.sublayers) {
+        if ([layer.name isEqualToString:@"bottomBorderLayer"]) {
+            decorationLayer = layer;
+            break;
+        }
+    }
+    
+    [decorationLayer removeFromSuperlayer];
+    decorationLayer = nil;
+    
     CAShapeLayer *bottomBorderLayer = [[CAShapeLayer alloc] init];
+    bottomBorderLayer.name = @"bottomBorderLayer";
     
     UIBezierPath *bottomBorder = [[UIBezierPath alloc] init];
     [bottomBorder moveToPoint:CGPointMake(0, size.height)];
