@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CRCredentialsViewController.h"
+#import "APGCredentialsViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
     UIWindow *mainWindow = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window = mainWindow;
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[CRCredentialsViewController alloc] init];
+    self.window.rootViewController = [[APGCredentialsViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
 }

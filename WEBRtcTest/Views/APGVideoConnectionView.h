@@ -1,5 +1,5 @@
 //
-//  CRVideoConnectionView.h
+//  APGVideoConnectionView.h
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 09/06/2018.
@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <TwilioVideo/TwilioVideo.h>
-#import "CRUpdatableView.h"
-#import "CRVideoViewDelegate.h"
+#import "APGUpdatableView.h"
+#import "APGVideoViewDelegate.h"
+#import "APGConnectionStatus.h"
 
-@interface CRVideoConnectionView : UIView
+@interface APGVideoConnectionView : UIView
 
-@property (nonatomic, weak) id<CRVideoViewDelegate> delegate;
+@property (nonatomic, weak) id<APGVideoViewDelegate> delegate;
 
 -(void)setLocalVideoTrack:(TVILocalVideoTrack*)videoTrack;
 -(void)setRemoteVideoTrack:(TVIRemoteVideoTrack*)videoTrack;
 -(void)removeRemoteVideoTrack:(TVIRemoteVideoTrack*)videoTrack;
 -(void)setNeedsMirrorCamera:(BOOL)mirror;
+-(void)updateConnectionStatus:(APGConnectionStatus)connectionStatus;
 
 @end

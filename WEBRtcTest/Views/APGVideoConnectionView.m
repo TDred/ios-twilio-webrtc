@@ -1,5 +1,5 @@
 //
-//  CRVideoConnectionView.m
+//  APGVideoConnectionView.m
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 09/06/2018.
@@ -9,30 +9,40 @@
 
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
-#import "CRVideoConnectionView.h"
-#import "AppDelegate.h"
-#import "CRTwoStateButton.h"
+#import "APGVideoConnectionView.h"
+#import "Utils.h"
+#import "APGTwoStateButton.h"
 
-@interface CRVideoConnectionView()
+@interface APGVideoConnectionView()
 
 @property (nonatomic) UIView *vControlPanel;
 @property (nonatomic) UIView *vDeviceCameraView;
-@property (nonatomic) CRTwoStateButton *btnEndCall;
-@property (nonatomic) CRTwoStateButton *btnSwitchVideo;
-@property (nonatomic) CRTwoStateButton *btnMute;
-@property (nonatomic) UILabel *lblStatus;
+@property (nonatomic) APGTwoStateButton *btnEndCall;
+@property (nonatomic) APGTwoStateButton *btnSwitchVideo;
+@property (nonatomic) APGTwoStateButton *btnMute;
+@property (nonatomic) UILabel *lblLocalStatus;
+@property (nonatomic) UILabel *lblRemoteStatus;
+@property (nonatomic) UIStackView *svRemoteStatusPanel;
+@property (nonatomic) UIActivityIndicatorView *aiRemoteLoader;
+@property (nonatomic) UIActivityIndicatorView *aiLocalLoader;
 @property (nonatomic) UITapGestureRecognizer *tapGestureRecognizer;
 @property (nonatomic) BOOL isControlPanelShown;
 
-#pragma mark - Twilio options
+#pragma mark - Twilio components
 @property (nonatomic) TVIVideoView *remoteView;
 @property (nonatomic) TVIVideoView *previewView;
 
 @end
 
-@implementation CRVideoConnectionView
+@implementation APGVideoConnectionView
 
 -(instancetype)init
+{
+    return [self initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E)];
+}
+
+//designated initializer
+-(instancetype)initWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor
 {
     self = [super init];
     if (!self) {
@@ -48,25 +58,48 @@
     self.vControlPanel.backgroundColor = UIColor.clearColor;
     [self addSubview:self.vControlPanel];
     
+    self.svRemoteStatusPanel = [[UIStackView alloc] init];
+    self.svRemoteStatusPanel.spacing = 10;
+    self.svRemoteStatusPanel.axis = UILayoutConstraintAxisVertical;
+    self.svRemoteStatusPanel.distribution = UIStackViewDistributionFillProportionally;
+    self.svRemoteStatusPanel.alignment = UIStackViewAlignmentCenter;
+    [self addSubview:self.svRemoteStatusPanel];
+    
+    self.aiRemoteLoader = [[UIActivityIndicatorView alloc] init];
+    self.aiRemoteLoader.hidesWhenStopped = YES;
+    self.aiRemoteLoader.color = UIColor.blackColor;
+    [self.svRemoteStatusPanel addArrangedSubview:self.aiRemoteLoader];
+    
+    self.lblRemoteStatus = [[UILabel alloc] init];
+    self.lblRemoteStatus.font = [UIFont systemFontOfSize:15.0];
+    self.lblRemoteStatus.numberOfLines = 0;
+    self.lblRemoteStatus.lineBreakMode = NSLineBreakByWordWrapping;
+    self.lblRemoteStatus.textColor = UIColor.blackColor;
+    self.lblRemoteStatus.textAlignment = NSTextAlignmentCenter;
+    [self.svRemoteStatusPanel addArrangedSubview:self.lblRemoteStatus];
+    
     self.vDeviceCameraView = [[UIView alloc] init];
-    self.vDeviceCameraView.backgroundColor = UIColor.whiteColor;
-    self.vDeviceCameraView.layer.borderWidth = 3.0f;
-    self.vDeviceCameraView.layer.borderColor = [RGB(0xCC3728) CGColor];
+    self.vDeviceCameraView.backgroundColor = UIColor.blackColor;
     [self addSubview:self.vDeviceCameraView];
     
+    self.aiLocalLoader = [[UIActivityIndicatorView alloc] init];
+    self.aiLocalLoader.hidesWhenStopped = YES;
+    self.aiLocalLoader.color = UIColor.whiteColor;
+    [self.vDeviceCameraView addSubview:self.aiLocalLoader];
+    
     UIImage *phoneImage = [UIImage imageNamed:@"phone.png"];
-    self.btnEndCall = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:phoneImage imageOff:nil];
+    self.btnEndCall = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:phoneImage imageOff:nil];
     [self.btnEndCall addTarget:self action:@selector(endCall:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnEndCall];
     
     UIImage *muteImage = [UIImage imageNamed:@"microphone.png"];
     UIImage *unmuteImage = [UIImage imageNamed:@"microphone.off.png"];
-    self.btnMute = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:muteImage imageOff:unmuteImage];
+    self.btnMute = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:muteImage imageOff:unmuteImage];
     [self.btnMute addTarget:self action:@selector(switchMicrophone:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnMute];
     
     UIImage *cameraFlipImage = [UIImage imageNamed:@"camera_flip.png"];
-    self.btnSwitchVideo = [[CRTwoStateButton alloc] initWithColor:RGB(0xCC3728) highlightColor:RGB(0xFF8A7E) imageOn:cameraFlipImage imageOff:nil];
+    self.btnSwitchVideo = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:cameraFlipImage imageOff:nil];
     [self.btnSwitchVideo addTarget:self action:@selector(switchCamera:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnSwitchVideo];
     
@@ -75,6 +108,13 @@
     [self.vDeviceCameraView addSubview:self.previewView];
     
     UIView *superview = self;
+    [self.svRemoteStatusPanel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(superview.mas_centerY);
+        make.centerX.equalTo(superview.mas_centerX);
+        make.left.equalTo(superview.mas_left).offset(80);
+        make.right.equalTo(superview.mas_right).offset(-80);
+    }];
+    
     [self.vControlPanel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(superview.mas_centerY);
         make.height.equalTo(@210);
@@ -110,12 +150,22 @@
         make.bottom.equalTo(self.vDeviceCameraView.mas_bottom);
     }];
     
+    [self.aiLocalLoader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.vDeviceCameraView.mas_centerX);
+        make.centerY.equalTo(self.vDeviceCameraView.mas_centerY);
+    }];
+    
+    [self.aiLocalLoader startAnimating];
     return self;
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
+    
+    self.vDeviceCameraView.layer.shadowRadius = 5.0f;
+    self.vDeviceCameraView.layer.shadowOpacity = 0.7f;
+    
     [self adjustLayoutForOrientation:UIDevice.currentDevice.orientation];
 }
 
@@ -205,6 +255,7 @@
 -(void)setLocalVideoTrack:(TVILocalVideoTrack *)videoTrack
 {
     [videoTrack addRenderer:self.previewView];
+    [self.aiLocalLoader stopAnimating];
 }
 
 -(void)setRemoteVideoTrack:(TVIRemoteVideoTrack *)videoTrack
@@ -225,6 +276,37 @@
 -(void)setNeedsMirrorCamera:(BOOL)mirror
 {
     self.previewView.mirror = mirror;
+}
+
+-(void)updateConnectionStatus:(APGConnectionStatus)connectionStatus
+{
+    switch (connectionStatus) {
+        case APGConnectionStatusConnectingToRoom:
+            [self.aiRemoteLoader startAnimating];
+            self.lblRemoteStatus.text = @"Connecting to room";
+            break;
+        case APGConnectionStatusConnectedToRoom:
+            self.lblRemoteStatus.text = @"Connected to room, waiting for second participant";
+            break;
+        case APGConnectionStatusParticipantConnected:
+            [self.aiRemoteLoader stopAnimating];
+            self.lblRemoteStatus.text = @"";
+            break;
+        case APGConnectionStatusParticipantDisconnected:
+            [self.aiRemoteLoader stopAnimating];
+            self.lblRemoteStatus.text = @"Second participant disconnected";
+            break;
+        case APGConnectionStatusFailedToConnect:
+            [self.aiRemoteLoader stopAnimating];
+            self.lblRemoteStatus.text = @"Failed to connect, try again";
+            break;
+        case APGConnectionStatusDisconnectedDueToError:
+            [self.aiRemoteLoader stopAnimating];
+            self.lblRemoteStatus.text = @"Connection failure, try again";
+            break;
+        default:
+            break;
+    }
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CRVideoViewDelegate <NSObject>
+@protocol APGVideoViewDelegate <NSObject>
 
 -(void)endCall;
 -(void)switchCamera;

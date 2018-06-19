@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol CRCredentialsDelegate <NSObject>
+@protocol APGCredentialsDelegate <NSObject>
 
 -(void)didEnterCredentials : (NSString*)identity roomName : (NSString*)roomName;
 

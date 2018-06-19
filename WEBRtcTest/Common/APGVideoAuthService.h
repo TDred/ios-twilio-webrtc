@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CRVideoAuthService : NSObject
+@interface APGVideoAuthService : NSObject
 
-+(CRVideoAuthService*)sharedService;
++(APGVideoAuthService*)sharedService;
 -(void)getAuthToken : (NSString*)userName fromURL : (NSString*)URL completionBlock : (void(^)(NSString*))completionBlock;
 
 @end

@@ -7,12 +7,14 @@
 //
 
 #import <TwilioVideo/TwilioVideo.h>
-#import "CRVideoConnectonViewController.h"
-#import "CRVideoAuthService.h"
+#import "APGVideoConnectonViewController.h"
+#import "APGVideoAuthService.h"
+#import "Utils.h"
+#import "APGConnectionStatus.h"
 
-@interface CRVideoConnectonViewController ()
+@interface APGVideoConnectonViewController ()
 
-@property (nonatomic) CRVideoConnectionView *connectionView;
+@property (nonatomic) APGVideoConnectionView *connectionView;
 @property (nonatomic, copy) NSString *authToken;
 
 #pragma mark - Twilio components
@@ -24,11 +26,11 @@
 
 @end
 
-@implementation CRVideoConnectonViewController
+@implementation APGVideoConnectonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.connectionView = [[CRVideoConnectionView alloc] init];
+    self.connectionView = [[APGVideoConnectionView alloc] init];
     self.view = self.connectionView;
     self.connectionView.delegate = self;
 }
@@ -36,8 +38,18 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    CRVideoAuthService *authService = [CRVideoAuthService sharedService];
+    [self prepareLocalMedia];
+    
+    APGVideoAuthService *authService = [APGVideoAuthService sharedService];
+    [self.connectionView updateConnectionStatus:APGConnectionStatusConnectingToRoom];
     [authService getAuthToken:self.identity fromURL:nil completionBlock:^(NSString *token) {
+        if (!token) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+            });
+            return;
+        };
+        
         self.authToken = token;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self doConnect];
@@ -64,7 +76,6 @@
 
 -(void)doConnect
 {
-    [self prepareLocalMedia];
     TVIConnectOptions *connectOptions = [TVIConnectOptions optionsWithToken:self.authToken
                                                                       block:^(TVIConnectOptionsBuilder * _Nonnull builder) {
                                                                           
@@ -79,7 +90,7 @@
     
     // Connect to the Room using the options we provided.
     self.room = [TwilioVideo connectWithOptions:connectOptions delegate:self];
-    [self logMessage:[NSString stringWithFormat:@"Attempting to connect to room %@", self.roomName]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Attempting to connect to room %@", self.roomName]];
 }
 
 #pragma mark - CRVideoViewDelegate
@@ -116,7 +127,7 @@
                                                                name:@"Microphone"];
         
         if (!self.localAudioTrack) {
-            NSLog(@"Failed to add audio track");
+            [self logStatusWithMessage:@"Failed to add audio track"];
         }
     }
     
@@ -139,17 +150,22 @@
                                                      constraints:nil
                                                             name:@"Camera"];
     if (!self.localVideoTrack) {
-        NSLog(@"Failed to add video track");
+        [self logStatusWithMessage:@"Failed to add video track"];
     } else {
         // Add renderer to video track for local preview
         [self.connectionView setLocalVideoTrack:self.localVideoTrack];
-        NSLog(@"Video track created");
+        [self logStatusWithMessage:@"Video track created"];
     }
 }
 
-- (void)logMessage:(NSString *)msg {
+- (void)logStatusWithMessage:(NSString *)msg {
     NSLog(@"%@", msg);
     //self.messageLabel.text = msg;
+}
+
+-(void)updateConnectionStatus:(APGConnectionStatus)connectionStatus
+{
+    [self.connectionView updateConnectionStatus:connectionStatus];
 }
 
 - (void)cleanupRemoteParticipant {
@@ -167,7 +183,8 @@
 - (void)didConnectToRoom:(TVIRoom *)room {
     // At the moment, this example only supports rendering one Participant at a time.
     
-    [self logMessage:[NSString stringWithFormat:@"Connected to room %@ as %@", room.name, room.localParticipant.identity]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Connected to room %@ as %@", room.name, room.localParticipant.identity]];
+    [self updateConnectionStatus:APGConnectionStatusConnectedToRoom];
     
     if (room.remoteParticipants.count > 0) {
         self.remoteParticipant = room.remoteParticipants[0];
@@ -176,13 +193,16 @@
 }
 
 - (void)room:(TVIRoom *)room didDisconnectWithError:(nullable NSError *)error {
-    [self logMessage:[NSString stringWithFormat:@"Disconncted from room %@, error = %@", room.name, error]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Disconncted from room %@, error = %@", room.name, error]];
+    [self updateConnectionStatus:APGConnectionStatusDisconnectedDueToError];
+    [self updateConnectionStatus:APGConnectionStatusFailedToConnect];
     [self cleanupRemoteParticipant];
     self.room = nil;
 }
 
 - (void)room:(TVIRoom *)room didFailToConnectWithError:(nonnull NSError *)error{
-    [self logMessage:[NSString stringWithFormat:@"Failed to connect to room, error = %@", error]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Failed to connect to room, error = %@", error]];
+    [self updateConnectionStatus:APGConnectionStatusFailedToConnect];
     self.room = nil;
 }
 
@@ -191,17 +211,19 @@
         self.remoteParticipant = participant;
         self.remoteParticipant.delegate = self;
     }
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ connected with %lu audio and %lu video tracks",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ connected with %lu audio and %lu video tracks",
                       participant.identity,
                       (unsigned long)[participant.audioTracks count],
                       (unsigned long)[participant.videoTracks count]]];
+    [self updateConnectionStatus:APGConnectionStatusParticipantConnected];
 }
 
 - (void)room:(TVIRoom *)room participantDidDisconnect:(TVIRemoteParticipant *)participant {
     if (self.remoteParticipant == participant) {
         [self cleanupRemoteParticipant];
     }
-    [self logMessage:[NSString stringWithFormat:@"Room %@ participant %@ disconnected", room.name, participant.identity]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Room %@ participant %@ disconnected", room.name, participant.identity]];
+    [self updateConnectionStatus:APGConnectionStatusParticipantDisconnected];
 }
 
 #pragma mark - TVIRemoteParticipantDelegate
@@ -210,8 +232,7 @@
       publishedVideoTrack:(TVIRemoteVideoTrackPublication *)publication {
     
     // Remote Participant has offered to share the video Track.
-    
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ published %@ video track .",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ published %@ video track .",
                       participant.identity, publication.trackName]];
 }
 
@@ -219,8 +240,7 @@
     unpublishedVideoTrack:(TVIRemoteVideoTrackPublication *)publication {
     
     // Remote Participant has stopped sharing the video Track.
-    
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ unpublished %@ video track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ unpublished %@ video track.",
                       participant.identity, publication.trackName]];
 }
 
@@ -228,8 +248,7 @@
       publishedAudioTrack:(TVIRemoteAudioTrackPublication *)publication {
     
     // Remote Participant has offered to share the audio Track.
-    
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ published %@ audio track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ published %@ audio track.",
                       participant.identity, publication.trackName]];
 }
 
@@ -237,8 +256,7 @@
     unpublishedAudioTrack:(TVIRemoteAudioTrackPublication *)publication {
     
     // Remote Participant has stopped sharing the audio Track.
-    
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ unpublished %@ audio track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ unpublished %@ audio track.",
                       participant.identity, publication.trackName]];
 }
 
@@ -248,12 +266,12 @@
     
     // We are subscribed to the remote Participant's audio Track. We will start receiving the
     // remote Participant's video frames now.
-    
-    [self logMessage:[NSString stringWithFormat:@"Subscribed to %@ video track for Participant %@",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Subscribed to %@ video track for Participant %@",
                       publication.trackName, participant.identity]];
     
     if (self.remoteParticipant == participant) {
         [self.connectionView setRemoteVideoTrack:videoTrack];
+        [self.connectionView updateConnectionStatus:APGConnectionStatusParticipantConnected];
     }
 }
 
@@ -261,10 +279,9 @@
                        publication:(TVIRemoteVideoTrackPublication *)publication
                     forParticipant:(TVIRemoteParticipant *)participant {
     
-// We are unsubscribed from the remote Participant's video Track. We will no longer receive the
-// remote Participant's video.
-    
-    [self logMessage:[NSString stringWithFormat:@"Unsubscribed from %@ video track for Participant %@",
+    // We are unsubscribed from the remote Participant's video Track. We will no longer receive the
+    // remote Participant's video.
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Unsubscribed from %@ video track for Participant %@",
                       publication.trackName, participant.identity]];
     
     if (self.remoteParticipant == participant) {
@@ -278,8 +295,7 @@
     
     // We are subscribed to the remote Participant's audio Track. We will start receiving the
     // remote Participant's audio now.
-    
-    [self logMessage:[NSString stringWithFormat:@"Subscribed to %@ audio track for Participant %@",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Subscribed to %@ audio track for Participant %@",
                       publication.trackName, participant.identity]];
 }
 
@@ -289,46 +305,45 @@
     
     // We are unsubscribed from the remote Participant's audio Track. We will no longer receive the
     // remote Participant's audio.
-    
-    [self logMessage:[NSString stringWithFormat:@"Unsubscribed from %@ audio track for Participant %@",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Unsubscribed from %@ audio track for Participant %@",
                       publication.trackName, participant.identity]];
 }
 
 - (void)remoteParticipant:(TVIRemoteParticipant *)participant
         enabledVideoTrack:(TVIRemoteVideoTrackPublication *)publication {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ enabled %@ video track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ enabled %@ video track.",
                       participant.identity, publication.trackName]];
 }
 
 - (void)remoteParticipant:(TVIRemoteParticipant *)participant
        disabledVideoTrack:(TVIRemoteVideoTrackPublication *)publication {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ disabled %@ video track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ disabled %@ video track.",
                       participant.identity, publication.trackName]];
 }
 
 - (void)remoteParticipant:(TVIRemoteParticipant *)participant
         enabledAudioTrack:(TVIRemoteAudioTrackPublication *)publication {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ enabled %@ audio track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ enabled %@ audio track.",
                       participant.identity, publication.trackName]];
 }
 
 - (void)remoteParticipant:(TVIRemoteParticipant *)participant
        disabledAudioTrack:(TVIRemoteAudioTrackPublication *)publication {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ disabled %@ audio track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ disabled %@ audio track.",
                       participant.identity, publication.trackName]];
 }
 
 - (void)failedToSubscribeToAudioTrack:(TVIRemoteAudioTrackPublication *)publication
                                 error:(NSError *)error
                        forParticipant:(TVIRemoteParticipant *)participant {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ failed to subscribe to %@ audio track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ failed to subscribe to %@ audio track.",
                       participant.identity, publication.trackName]];
 }
 
 - (void)failedToSubscribeToVideoTrack:(TVIRemoteVideoTrackPublication *)publication
                                 error:(NSError *)error
                        forParticipant:(TVIRemoteParticipant *)participant {
-    [self logMessage:[NSString stringWithFormat:@"Participant %@ failed to subscribe to %@ video track.",
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Participant %@ failed to subscribe to %@ video track.",
                       participant.identity, publication.trackName]];
 }
 

@@ -1,26 +1,26 @@
 //
-//  CRCredentialsViewController.m
+//  APGCredentialsViewController.m
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 13/06/2018.
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "CRCredentialsViewController.h"
-#import "CRVideoConnectonViewController.h"
-#import "CRCredentialsView.h"
+#import "APGCredentialsViewController.h"
+#import "APGVideoConnectonViewController.h"
+#import "APGCredentialsView.h"
 
-@interface CRCredentialsViewController ()
+@interface APGCredentialsViewController ()
 
-@property (nonatomic) CRCredentialsView* credentialsView;
+@property (nonatomic) APGCredentialsView* credentialsView;
 
 @end
 
-@implementation CRCredentialsViewController
+@implementation APGCredentialsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.credentialsView = [[CRCredentialsView alloc] init];
+    self.credentialsView = [[APGCredentialsView alloc] init];
     self.credentialsView.delegate = self;
     self.view = self.credentialsView;
 }
@@ -38,7 +38,7 @@
 
 -(void)didEnterCredentials:(NSString *)identity roomName:(NSString *)roomName
 {
-    CRVideoConnectonViewController *videoViewController = [[CRVideoConnectonViewController alloc] init];
+    APGVideoConnectonViewController *videoViewController = [[APGVideoConnectonViewController alloc] init];
     videoViewController.identity = identity;
     videoViewController.roomName = roomName;
     [self presentViewController:videoViewController animated:YES completion:nil];

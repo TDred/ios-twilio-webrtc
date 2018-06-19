@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CRTwoStateButton : UIButton
+@interface APGTwoStateButton : UIButton
 
 @property (nonatomic) UIColor *normalColor;
 @property (nonatomic) UIColor *highlightColor;

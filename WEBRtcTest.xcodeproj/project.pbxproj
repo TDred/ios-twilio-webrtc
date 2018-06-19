@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4290DB6C20D2C7EC002E78AE /* CRUpdatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */; };
-		4290DB7020D40702002E78AE /* CRTwoStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6F20D40702002E78AE /* CRTwoStateButton.m */; };
+		4290DB6C20D2C7EC002E78AE /* APGUpdatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */; };
+		4290DB7020D40702002E78AE /* APGTwoStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6F20D40702002E78AE /* APGTwoStateButton.m */; };
 		6B0E27472090CDF0009B7CF3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */; };
-		6B0E274B2091BB7D009B7CF3 /* beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6B0E274A2091BB7B009B7CF3 /* beep.mp3 */; };
 		6B8310F5208F6AEC003960F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8310F4208F6AEC003960F2 /* AppDelegate.m */; };
 		6B8310FD208F6AF5003960F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B8310FC208F6AF5003960F2 /* Assets.xcassets */; };
 		6B831100208F6AF5003960F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B8310FE208F6AF5003960F2 /* LaunchScreen.storyboard */; };
 		6B831103208F6AF5003960F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B831102208F6AF5003960F2 /* main.m */; };
-		6BA83B2C20CBDB3F008E84C2 /* CRVideoConnectonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA83B2B20CBDB3F008E84C2 /* CRVideoConnectonViewController.m */; };
-		6BA83B2F20CBDD73008E84C2 /* CRVideoConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA83B2E20CBDD73008E84C2 /* CRVideoConnectionView.m */; };
+		6B9F6B2420D9062800903CEC /* Utils.h in Sources */ = {isa = PBXBuildFile; fileRef = 6B9F6B2320D9062800903CEC /* Utils.h */; };
+		6BA83B2C20CBDB3F008E84C2 /* APGVideoConnectonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA83B2B20CBDB3F008E84C2 /* APGVideoConnectonViewController.m */; };
+		6BA83B2F20CBDD73008E84C2 /* APGVideoConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BA83B2E20CBDD73008E84C2 /* APGVideoConnectionView.m */; };
 		6BACF80820D125DF00E630F7 /* TwilioVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF80720D125DE00E630F7 /* TwilioVideo.framework */; };
 		6BACF80920D125DF00E630F7 /* TwilioVideo.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF80720D125DE00E630F7 /* TwilioVideo.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BACF81120D1269D00E630F7 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF80A20D1269C00E630F7 /* VideoToolbox.framework */; };
@@ -28,10 +28,9 @@
 		6BACF81720D1269D00E630F7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81020D1269C00E630F7 /* SystemConfiguration.framework */; };
 		6BACF81920D128C000E630F7 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81820D128BF00E630F7 /* Masonry.framework */; };
 		6BACF81A20D128C000E630F7 /* Masonry.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BACF81820D128BF00E630F7 /* Masonry.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6BACF82020D12B5E00E630F7 /* CRVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */; };
-		6BACF82320D14A3400E630F7 /* CRCredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82220D14A3400E630F7 /* CRCredentialsViewController.m */; };
-		6BACF82620D14A4D00E630F7 /* CRCredentialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82520D14A4D00E630F7 /* CRCredentialsView.m */; };
-		6BACF82920D15CAE00E630F7 /* UILabel+LabelThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82820D15CAE00E630F7 /* UILabel+LabelThemes.m */; };
+		6BACF82020D12B5E00E630F7 /* APGVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF81F20D12B5E00E630F7 /* APGVideoAuthService.m */; };
+		6BACF82320D14A3400E630F7 /* APGCredentialsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82220D14A3400E630F7 /* APGCredentialsViewController.m */; };
+		6BACF82620D14A4D00E630F7 /* APGCredentialsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82520D14A4D00E630F7 /* APGCredentialsView.m */; };
 		6BACF82C20D15CDB00E630F7 /* UITextField+TextFieldThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82B20D15CDB00E630F7 /* UITextField+TextFieldThemes.m */; };
 		6BACF82F20D15CEC00E630F7 /* UIButton+ButtonThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BACF82E20D15CEC00E630F7 /* UIButton+ButtonThemes.m */; };
 /* End PBXBuildFile section */
@@ -52,15 +51,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4290DB6920D2A47D002E78AE /* CRCredentialsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRCredentialsDelegate.h; sourceTree = "<group>"; };
-		4290DB6A20D2C7EC002E78AE /* CRUpdatableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRUpdatableView.h; sourceTree = "<group>"; };
-		4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRUpdatableView.m; sourceTree = "<group>"; };
-		4290DB6D20D2C81A002E78AE /* CRLayoutUpdatedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRLayoutUpdatedDelegate.h; sourceTree = "<group>"; };
-		4290DB6E20D40702002E78AE /* CRTwoStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRTwoStateButton.h; sourceTree = "<group>"; };
-		4290DB6F20D40702002E78AE /* CRTwoStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRTwoStateButton.m; sourceTree = "<group>"; };
-		4290DB7120D42109002E78AE /* CRVideoViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoViewDelegate.h; sourceTree = "<group>"; };
+		4290DB6920D2A47D002E78AE /* APGCredentialsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGCredentialsDelegate.h; sourceTree = "<group>"; };
+		4290DB6A20D2C7EC002E78AE /* APGUpdatableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGUpdatableView.h; sourceTree = "<group>"; };
+		4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGUpdatableView.m; sourceTree = "<group>"; };
+		4290DB6D20D2C81A002E78AE /* APGLayoutUpdatedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGLayoutUpdatedDelegate.h; sourceTree = "<group>"; };
+		4290DB6E20D40702002E78AE /* APGTwoStateButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGTwoStateButton.h; sourceTree = "<group>"; };
+		4290DB6F20D40702002E78AE /* APGTwoStateButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGTwoStateButton.m; sourceTree = "<group>"; };
+		4290DB7120D42109002E78AE /* APGVideoViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoViewDelegate.h; sourceTree = "<group>"; };
 		6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		6B0E274A2091BB7B009B7CF3 /* beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = beep.mp3; sourceTree = "<group>"; };
 		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WEBRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B8310F3208F6AEC003960F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B8310F4208F6AEC003960F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,10 +70,12 @@
 		6B83110B208F7203003960F2 /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		6B83110E208F724F003960F2 /* Carthage */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Carthage; path = QRCodeScanner/Carthage; sourceTree = "<group>"; };
 		6B831110208F725C003960F2 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = QRCodeScanner/Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
-		6BA83B2A20CBDB3F008E84C2 /* CRVideoConnectonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoConnectonViewController.h; sourceTree = "<group>"; };
-		6BA83B2B20CBDB3F008E84C2 /* CRVideoConnectonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRVideoConnectonViewController.m; sourceTree = "<group>"; };
-		6BA83B2D20CBDD73008E84C2 /* CRVideoConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoConnectionView.h; sourceTree = "<group>"; };
-		6BA83B2E20CBDD73008E84C2 /* CRVideoConnectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRVideoConnectionView.m; sourceTree = "<group>"; };
+		6B9F6B2320D9062800903CEC /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		6B9F6B2520D906B200903CEC /* APGConnectionStatus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGConnectionStatus.h; sourceTree = "<group>"; };
+		6BA83B2A20CBDB3F008E84C2 /* APGVideoConnectonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectonViewController.h; sourceTree = "<group>"; };
+		6BA83B2B20CBDB3F008E84C2 /* APGVideoConnectonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectonViewController.m; sourceTree = "<group>"; };
+		6BA83B2D20CBDD73008E84C2 /* APGVideoConnectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionView.h; sourceTree = "<group>"; };
+		6BA83B2E20CBDD73008E84C2 /* APGVideoConnectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectionView.m; sourceTree = "<group>"; };
 		6BACF80720D125DE00E630F7 /* TwilioVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioVideo.framework; path = WEBRtcTest/Carthage/Build/iOS/TwilioVideo.framework; sourceTree = "<group>"; };
 		6BACF80A20D1269C00E630F7 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		6BACF80B20D1269C00E630F7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -85,14 +85,12 @@
 		6BACF80F20D1269C00E630F7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		6BACF81020D1269C00E630F7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6BACF81820D128BF00E630F7 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = WEBRtcTest/Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
-		6BACF81E20D12B5E00E630F7 /* CRVideoAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRVideoAuthService.h; sourceTree = "<group>"; };
-		6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRVideoAuthService.m; sourceTree = "<group>"; };
-		6BACF82120D14A3400E630F7 /* CRCredentialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRCredentialsViewController.h; sourceTree = "<group>"; };
-		6BACF82220D14A3400E630F7 /* CRCredentialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRCredentialsViewController.m; sourceTree = "<group>"; };
-		6BACF82420D14A4D00E630F7 /* CRCredentialsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CRCredentialsView.h; sourceTree = "<group>"; };
-		6BACF82520D14A4D00E630F7 /* CRCredentialsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CRCredentialsView.m; sourceTree = "<group>"; };
-		6BACF82720D15CAE00E630F7 /* UILabel+LabelThemes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+LabelThemes.h"; sourceTree = "<group>"; };
-		6BACF82820D15CAE00E630F7 /* UILabel+LabelThemes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+LabelThemes.m"; sourceTree = "<group>"; };
+		6BACF81E20D12B5E00E630F7 /* APGVideoAuthService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoAuthService.h; sourceTree = "<group>"; };
+		6BACF81F20D12B5E00E630F7 /* APGVideoAuthService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGVideoAuthService.m; sourceTree = "<group>"; };
+		6BACF82120D14A3400E630F7 /* APGCredentialsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGCredentialsViewController.h; sourceTree = "<group>"; };
+		6BACF82220D14A3400E630F7 /* APGCredentialsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGCredentialsViewController.m; sourceTree = "<group>"; };
+		6BACF82420D14A4D00E630F7 /* APGCredentialsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGCredentialsView.h; sourceTree = "<group>"; };
+		6BACF82520D14A4D00E630F7 /* APGCredentialsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGCredentialsView.m; sourceTree = "<group>"; };
 		6BACF82A20D15CDB00E630F7 /* UITextField+TextFieldThemes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITextField+TextFieldThemes.h"; sourceTree = "<group>"; };
 		6BACF82B20D15CDB00E630F7 /* UITextField+TextFieldThemes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITextField+TextFieldThemes.m"; sourceTree = "<group>"; };
 		6BACF82D20D15CEC00E630F7 /* UIButton+ButtonThemes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ButtonThemes.h"; sourceTree = "<group>"; };
@@ -123,9 +121,9 @@
 		4290DB6820D2A446002E78AE /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				4290DB6920D2A47D002E78AE /* CRCredentialsDelegate.h */,
-				4290DB6D20D2C81A002E78AE /* CRLayoutUpdatedDelegate.h */,
-				4290DB7120D42109002E78AE /* CRVideoViewDelegate.h */,
+				4290DB6920D2A47D002E78AE /* APGCredentialsDelegate.h */,
+				4290DB6D20D2C81A002E78AE /* APGLayoutUpdatedDelegate.h */,
+				4290DB7120D42109002E78AE /* APGVideoViewDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -133,14 +131,14 @@
 		6B1B13B720CBCA19000CE733 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6BA83B2D20CBDD73008E84C2 /* CRVideoConnectionView.h */,
-				6BA83B2E20CBDD73008E84C2 /* CRVideoConnectionView.m */,
-				6BACF82420D14A4D00E630F7 /* CRCredentialsView.h */,
-				6BACF82520D14A4D00E630F7 /* CRCredentialsView.m */,
-				4290DB6A20D2C7EC002E78AE /* CRUpdatableView.h */,
-				4290DB6B20D2C7EC002E78AE /* CRUpdatableView.m */,
-				4290DB6E20D40702002E78AE /* CRTwoStateButton.h */,
-				4290DB6F20D40702002E78AE /* CRTwoStateButton.m */,
+				6BA83B2D20CBDD73008E84C2 /* APGVideoConnectionView.h */,
+				6BA83B2E20CBDD73008E84C2 /* APGVideoConnectionView.m */,
+				6BACF82420D14A4D00E630F7 /* APGCredentialsView.h */,
+				6BACF82520D14A4D00E630F7 /* APGCredentialsView.m */,
+				4290DB6A20D2C7EC002E78AE /* APGUpdatableView.h */,
+				4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */,
+				4290DB6E20D40702002E78AE /* APGTwoStateButton.h */,
+				4290DB6F20D40702002E78AE /* APGTwoStateButton.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -148,10 +146,10 @@
 		6B1B13B820CBCA21000CE733 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6BA83B2A20CBDB3F008E84C2 /* CRVideoConnectonViewController.h */,
-				6BA83B2B20CBDB3F008E84C2 /* CRVideoConnectonViewController.m */,
-				6BACF82120D14A3400E630F7 /* CRCredentialsViewController.h */,
-				6BACF82220D14A3400E630F7 /* CRCredentialsViewController.m */,
+				6BA83B2A20CBDB3F008E84C2 /* APGVideoConnectonViewController.h */,
+				6BA83B2B20CBDB3F008E84C2 /* APGVideoConnectonViewController.m */,
+				6BACF82120D14A3400E630F7 /* APGCredentialsViewController.h */,
+				6BACF82220D14A3400E630F7 /* APGCredentialsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -182,7 +180,6 @@
 				6BACF81C20D12AB900E630F7 /* Common */,
 				6B1B13B820CBCA21000CE733 /* ViewControllers */,
 				6B1B13B720CBCA19000CE733 /* Views */,
-				6B0E274A2091BB7B009B7CF3 /* beep.mp3 */,
 				6B8310F3208F6AEC003960F2 /* AppDelegate.h */,
 				6B8310F4208F6AEC003960F2 /* AppDelegate.m */,
 				6B8310FC208F6AF5003960F2 /* Assets.xcassets */,
@@ -215,14 +212,14 @@
 		6BACF81C20D12AB900E630F7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6BACF81E20D12B5E00E630F7 /* CRVideoAuthService.h */,
-				6BACF81F20D12B5E00E630F7 /* CRVideoAuthService.m */,
-				6BACF82720D15CAE00E630F7 /* UILabel+LabelThemes.h */,
-				6BACF82820D15CAE00E630F7 /* UILabel+LabelThemes.m */,
+				6BACF81E20D12B5E00E630F7 /* APGVideoAuthService.h */,
+				6BACF81F20D12B5E00E630F7 /* APGVideoAuthService.m */,
 				6BACF82A20D15CDB00E630F7 /* UITextField+TextFieldThemes.h */,
 				6BACF82B20D15CDB00E630F7 /* UITextField+TextFieldThemes.m */,
 				6BACF82D20D15CEC00E630F7 /* UIButton+ButtonThemes.h */,
 				6BACF82E20D15CEC00E630F7 /* UIButton+ButtonThemes.m */,
+				6B9F6B2320D9062800903CEC /* Utils.h */,
+				6B9F6B2520D906B200903CEC /* APGConnectionStatus.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -288,7 +285,6 @@
 			files = (
 				6B831100208F6AF5003960F2 /* LaunchScreen.storyboard in Resources */,
 				6B8310FD208F6AF5003960F2 /* Assets.xcassets in Resources */,
-				6B0E274B2091BB7D009B7CF3 /* beep.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,18 +315,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BACF82620D14A4D00E630F7 /* CRCredentialsView.m in Sources */,
-				6BACF82320D14A3400E630F7 /* CRCredentialsViewController.m in Sources */,
+				6BACF82620D14A4D00E630F7 /* APGCredentialsView.m in Sources */,
+				6BACF82320D14A3400E630F7 /* APGCredentialsViewController.m in Sources */,
 				6B831103208F6AF5003960F2 /* main.m in Sources */,
-				6BACF82020D12B5E00E630F7 /* CRVideoAuthService.m in Sources */,
-				6BA83B2F20CBDD73008E84C2 /* CRVideoConnectionView.m in Sources */,
-				4290DB7020D40702002E78AE /* CRTwoStateButton.m in Sources */,
+				6B9F6B2420D9062800903CEC /* Utils.h in Sources */,
+				6BACF82020D12B5E00E630F7 /* APGVideoAuthService.m in Sources */,
+				6BA83B2F20CBDD73008E84C2 /* APGVideoConnectionView.m in Sources */,
+				4290DB7020D40702002E78AE /* APGTwoStateButton.m in Sources */,
 				6BACF82C20D15CDB00E630F7 /* UITextField+TextFieldThemes.m in Sources */,
-				4290DB6C20D2C7EC002E78AE /* CRUpdatableView.m in Sources */,
+				4290DB6C20D2C7EC002E78AE /* APGUpdatableView.m in Sources */,
 				6B8310F5208F6AEC003960F2 /* AppDelegate.m in Sources */,
-				6BA83B2C20CBDB3F008E84C2 /* CRVideoConnectonViewController.m in Sources */,
+				6BA83B2C20CBDB3F008E84C2 /* APGVideoConnectonViewController.m in Sources */,
 				6BACF82F20D15CEC00E630F7 /* UIButton+ButtonThemes.m in Sources */,
-				6BACF82920D15CAE00E630F7 /* UILabel+LabelThemes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

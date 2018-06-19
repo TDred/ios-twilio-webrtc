@@ -1,5 +1,5 @@
 //
-//  UILabel+LabelThemes.h
+//  APGCredentialsViewController.h
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 13/06/2018.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APGCredentialsDelegate.h"
 
-@interface UILabel (LabelThemes)
+@interface APGCredentialsViewController : UIViewController <APGCredentialsDelegate>
 
 
 

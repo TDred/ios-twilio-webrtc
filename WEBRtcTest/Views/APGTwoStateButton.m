@@ -6,9 +6,9 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "CRTwoStateButton.h"
+#import "APGTwoStateButton.h"
 
-@implementation CRTwoStateButton
+@implementation APGTwoStateButton
 
 -(instancetype)init
 {

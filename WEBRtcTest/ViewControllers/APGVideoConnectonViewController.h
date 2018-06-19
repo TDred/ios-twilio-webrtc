@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CRVideoConnectionView.h"
+#import "APGVideoConnectionView.h"
 
-@interface CRVideoConnectonViewController : UIViewController <CRVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
+@interface APGVideoConnectonViewController : UIViewController <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
 
 @property (nonatomic,copy) NSString* identity;
 @property (nonatomic,copy) NSString* roomName;

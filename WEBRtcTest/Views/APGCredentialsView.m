@@ -1,5 +1,5 @@
 //
-//  CRCredentialsView.m
+//  APGCredentialsView.m
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 13/06/2018.
@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
-#import "AppDelegate.h"
-#import "CRCredentialsView.h"
+#import "Utils.h"
+#import "APGCredentialsView.h"
 #import "UIButton+ButtonThemes.h"
 #import "UITextField+TextFieldThemes.h"
 
-@interface CRCredentialsView()
+@interface APGCredentialsView()
 
 @property (nonatomic) UILabel *lblName;
 @property (nonatomic) UILabel *lblRoom;
@@ -23,7 +23,7 @@
 
 @end
 
-@implementation CRCredentialsView
+@implementation APGCredentialsView
 
 -(instancetype)init
 {

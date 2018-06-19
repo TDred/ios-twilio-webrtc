@@ -6,15 +6,15 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "CRVideoAuthService.h"
+#import "APGVideoAuthService.h"
 
 static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?identity=%@";
 
-@interface CRVideoAuthService ()
+@interface APGVideoAuthService ()
 
 @end
 
-@implementation CRVideoAuthService
+@implementation APGVideoAuthService
 
 -(instancetype)init
 {
@@ -28,14 +28,14 @@ static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?ident
     return self;
 }
 
-+(CRVideoAuthService*)sharedService
++(APGVideoAuthService*)sharedService
 {
-    static CRVideoAuthService* sharedService;
+    static APGVideoAuthService* sharedService;
     static dispatch_once_t onceToken;
     
     if (!sharedService) {
         dispatch_once(&onceToken, ^{
-            sharedService = [[CRVideoAuthService alloc] initPrivate];
+            sharedService = [[APGVideoAuthService alloc] initPrivate];
         });
     }
     
@@ -54,6 +54,8 @@ static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?ident
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             NSLog(@"Error proccessing auth request: %@", error.localizedDescription);
+            completionBlock(nil);
+            return;
         }
         
         NSJSONSerialization *json = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];

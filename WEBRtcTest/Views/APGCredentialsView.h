@@ -1,5 +1,5 @@
 //
-//  CRCredentialsView.h
+//  APGCredentialsView.h
 //  WEBRtcTest
 //
 //  Created by Тимофей Буторин on 13/06/2018.
@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CRCredentialsDelegate.h"
+#import "APGCredentialsDelegate.h"
 
-@interface CRCredentialsView : UIView <UITextFieldDelegate>
+@interface APGCredentialsView : UIView <UITextFieldDelegate>
 
-@property (nonatomic, weak) id<CRCredentialsDelegate> delegate;
+@property (nonatomic, weak) id<APGCredentialsDelegate> delegate;
 
 -(void)focusOnFirstInput;
 

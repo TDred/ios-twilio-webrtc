@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CRLayoutUpdatedDelegate.h"
+#import "APGLayoutUpdatedDelegate.h"
 
-@interface CRUpdatableView : UIView
+@interface APGUpdatableView : UIView
 
-@property (nonatomic,weak) id<CRLayoutUpdatedDelegate> delegate;
+@property (nonatomic,weak) id<APGLayoutUpdatedDelegate> delegate;
 
 @end

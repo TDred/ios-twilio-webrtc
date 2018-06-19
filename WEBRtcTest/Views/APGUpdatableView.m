@@ -6,9 +6,9 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "CRUpdatableView.h"
+#import "APGUpdatableView.h"
 
-@implementation CRUpdatableView
+@implementation APGUpdatableView
 
 -(void)layoutSubviews
 {
