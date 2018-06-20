@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
 #import "APGVideoConnectionView.h"
-#import "Utils.h"
+#import "APGUtils.h"
 #import "APGTwoStateButton.h"
 
 @interface APGVideoConnectionView()
@@ -87,18 +87,20 @@
     self.aiLocalLoader.color = UIColor.whiteColor;
     [self.vDeviceCameraView addSubview:self.aiLocalLoader];
     
-    UIImage *phoneImage = [UIImage imageNamed:@"phone.png"];
+    
+    NSBundle *currentBundle = [NSBundle bundleForClass:self.class];
+    UIImage *phoneImage = [UIImage imageNamed:@"phone.png" inBundle:currentBundle compatibleWithTraitCollection:nil];
     self.btnEndCall = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:phoneImage imageOff:nil];
     [self.btnEndCall addTarget:self action:@selector(endCall:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnEndCall];
     
-    UIImage *muteImage = [UIImage imageNamed:@"microphone.png"];
-    UIImage *unmuteImage = [UIImage imageNamed:@"microphone.off.png"];
+    UIImage *muteImage = [UIImage imageNamed:@"microphone.png" inBundle:currentBundle compatibleWithTraitCollection:nil];
+    UIImage *unmuteImage = [UIImage imageNamed:@"microphone.off.png" inBundle:currentBundle compatibleWithTraitCollection:nil];
     self.btnMute = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:muteImage imageOff:unmuteImage];
     [self.btnMute addTarget:self action:@selector(switchMicrophone:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnMute];
     
-    UIImage *cameraFlipImage = [UIImage imageNamed:@"camera_flip.png"];
+    UIImage *cameraFlipImage = [UIImage imageNamed:@"camera_flip.png" inBundle:currentBundle compatibleWithTraitCollection:nil];
     self.btnSwitchVideo = [[APGTwoStateButton alloc] initWithColor:color highlightColor:highlightColor imageOn:cameraFlipImage imageOff:nil];
     [self.btnSwitchVideo addTarget:self action:@selector(switchCamera:) forControlEvents:UIControlEventTouchUpInside];
     [self.vControlPanel addSubview:self.btnSwitchVideo];

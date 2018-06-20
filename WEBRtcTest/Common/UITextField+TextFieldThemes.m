@@ -7,7 +7,6 @@
 //
 
 #import "UITextField+TextFieldThemes.h"
-#import "AppDelegate.h"
 
 @implementation UITextField (TextFieldThemes)
 

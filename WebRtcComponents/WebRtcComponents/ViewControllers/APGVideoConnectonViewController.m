@@ -7,9 +7,10 @@
 //
 
 #import <TwilioVideo/TwilioVideo.h>
+#import "APGVideoConnectionView.h"
 #import "APGVideoConnectonViewController.h"
 #import "APGVideoAuthService.h"
-#import "Utils.h"
+#import "APGUtils.h"
 #import "APGConnectionStatus.h"
 
 @interface APGVideoConnectonViewController ()

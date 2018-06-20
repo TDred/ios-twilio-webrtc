@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (ButtonThemes)
+@interface UIButton (APGButtonThemes)
 
 -(void) roundedButton :(UIColor*)color withSecondaryColor:(UIColor*)color withSize:(CGSize)size;
 

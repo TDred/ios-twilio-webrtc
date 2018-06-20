@@ -6,8 +6,8 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
+#import <WebRtcComponents/WebRtcComponents.h>
 #import "APGCredentialsViewController.h"
-#import "APGVideoConnectonViewController.h"
 #import "APGCredentialsView.h"
 
 @interface APGCredentialsViewController ()

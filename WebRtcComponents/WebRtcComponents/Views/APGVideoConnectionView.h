@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <TwilioVideo/TwilioVideo.h>
-#import "APGUpdatableView.h"
 #import "APGVideoViewDelegate.h"
 #import "APGConnectionStatus.h"
 

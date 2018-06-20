@@ -6,9 +6,9 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
-#import "UIButton+ButtonThemes.h"
+#import "UIButton+APGButtonThemes.h"
 
-@implementation UIButton (ButtonThemes)
+@implementation UIButton (APGButtonThemes)
 
 - (void)roundedButton:(UIColor *)color withSecondaryColor:(UIColor *)secondaryColor withSize:(CGSize)size
 {
