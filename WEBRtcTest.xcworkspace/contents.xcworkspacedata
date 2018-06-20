@@ -5,6 +5,6 @@
       location = "group:WebRtcComponents/WebRtcComponents.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:WEBRtcTest.xcodeproj">
+      location = "container:/Users/timofejbutorin/Documents/Test/WEBRtcTest/WebRtcTest.xcodeproj">
    </FileRef>
 </Workspace>

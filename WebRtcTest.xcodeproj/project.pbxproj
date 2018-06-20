@@ -54,7 +54,7 @@
 		4290DB6D20D2C81A002E78AE /* APGLayoutUpdatedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGLayoutUpdatedDelegate.h; sourceTree = "<group>"; };
 		6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebRtcComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WEBRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WEBRtcTest.app; path = WebRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B8310F3208F6AEC003960F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B8310F4208F6AEC003960F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6B8310FC208F6AF5003960F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */,
 				6BACF81820D128BF00E630F7 /* Masonry.framework */,
 				6BACF80720D125DE00E630F7 /* TwilioVideo.framework */,
-				6B8310F2208F6AEC003960F2 /* WEBRtcTest */,
+				6B8310F2208F6AEC003960F2 /* WebRtcTest */,
 				6B8310F1208F6AEC003960F2 /* Products */,
 				6B83110D208F724E003960F2 /* Frameworks */,
 			);
@@ -153,7 +153,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6B8310F2208F6AEC003960F2 /* WEBRtcTest */ = {
+		6B8310F2208F6AEC003960F2 /* WebRtcTest */ = {
 			isa = PBXGroup;
 			children = (
 				4290DB6820D2A446002E78AE /* Protocols */,
@@ -169,7 +169,7 @@
 				6B831109208F70AF003960F2 /* Cartfile */,
 				6B83110B208F7203003960F2 /* Cartfile.resolved */,
 			);
-			path = WEBRtcTest;
+			path = WebRtcTest;
 			sourceTree = "<group>";
 		};
 		6B83110D208F724E003960F2 /* Frameworks */ = {
@@ -201,9 +201,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6B8310EF208F6AEC003960F2 /* WEBRtcTest */ = {
+		6B8310EF208F6AEC003960F2 /* WebRtcTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6B831106208F6AF6003960F2 /* Build configuration list for PBXNativeTarget "WEBRtcTest" */;
+			buildConfigurationList = 6B831106208F6AF6003960F2 /* Build configuration list for PBXNativeTarget "WebRtcTest" */;
 			buildPhases = (
 				6B8310EC208F6AEC003960F2 /* Sources */,
 				6B8310ED208F6AEC003960F2 /* Frameworks */,
@@ -215,8 +215,8 @@
 			);
 			dependencies = (
 			);
-			name = WEBRtcTest;
-			productName = QRCodeScanner;
+			name = WebRtcTest;
+			productName = WebRtcTest;
 			productReference = 6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -234,7 +234,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WEBRtcTest" */;
+			buildConfigurationList = 6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WebRtcTest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6B8310EF208F6AEC003960F2 /* WEBRtcTest */,
+				6B8310EF208F6AEC003960F2 /* WebRtcTest */,
 			);
 		};
 /* End PBXProject section */
@@ -430,8 +430,7 @@
 				DEVELOPMENT_TEAM = A8C29WJ9WR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QRCodeScanner/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/WEBRtcTest/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/WebRtcTest/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/WEBRtcTest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -439,7 +438,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WEBRtcTest;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WebRtcTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -453,8 +452,7 @@
 				DEVELOPMENT_TEAM = A8C29WJ9WR;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QRCodeScanner/Carthage/Build/iOS",
-					"$(PROJECT_DIR)/WEBRtcTest/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/WebRtcTest/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/WEBRtcTest/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
@@ -462,7 +460,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WEBRtcTest;
+				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WebRtcTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,7 +469,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WEBRtcTest" */ = {
+		6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WebRtcTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6B831104208F6AF5003960F2 /* Debug */,
@@ -480,7 +478,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6B831106208F6AF6003960F2 /* Build configuration list for PBXNativeTarget "WEBRtcTest" */ = {
+		6B831106208F6AF6003960F2 /* Build configuration list for PBXNativeTarget "WebRtcTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6B831107208F6AF6003960F2 /* Debug */,
