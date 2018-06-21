@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:WebRtcComponents/WebRtcComponents.xcodeproj">
+      location = "group:WEBRtcTest.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:/Users/timofejbutorin/Documents/Test/WEBRtcTest/WebRtcTest.xcodeproj">
+      location = "group:WebRtcComponents/WebRtcComponents.xcodeproj">
    </FileRef>
 </Workspace>
