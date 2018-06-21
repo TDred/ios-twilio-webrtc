@@ -19,6 +19,7 @@
 @property (nonatomic) UITextField *txtName;
 @property (nonatomic) UITextField *txtRoom;
 @property (nonatomic) UIButton *btnConnect;
+@property (nonatomic) UIActivityIndicatorView *aiLoader;
 
 @end
 
@@ -53,6 +54,11 @@
     self.txtRoom.delegate = self;
     self.txtRoom.tag = 2;
     [self addSubview:self.txtRoom];
+    
+    self.aiLoader = [[UIActivityIndicatorView alloc] init];
+    self.aiLoader.color = UIColor.whiteColor;
+    self.aiLoader.hidesWhenStopped = YES;
+    [self.btnConnect addSubview:self.aiLoader];
     
     UIView *superview = self;
     [self.lblName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -90,12 +96,27 @@
         make.height.equalTo(@45);
     }];
     
+    [self.aiLoader mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.btnConnect.mas_centerX);
+        make.centerY.equalTo(self.btnConnect.mas_centerY);
+    }];
     
     return self;
 }
 
+- (void)addLoaderToButton {
+    [self.btnConnect setTitle:@"" forState:UIControlStateNormal];
+    [self.aiLoader startAnimating];
+}
+
+- (void)removeLoaderFromButton {
+    [self.btnConnect setTitle:@"CONNECT" forState:UIControlStateNormal];
+    [self.aiLoader stopAnimating];
+}
+
 -(void)connect:(id)sender
 {
+    [self addLoaderToButton];
     [self.delegate didEnterCredentials:self.txtName.text roomName:self.txtRoom.text];
 }
 
@@ -112,12 +133,18 @@
     [self.txtRoom setDefaultTheme:RGB(0xD9D3D2) withBottomBorderColor:RGB(0xCC3728) withSize:roomFrame.size];
 }
 
+#pragma mark - Public interface
 -(void)focusOnFirstInput
 {
     if (self.txtName.canBecomeFirstResponder)
     {
         [self.txtName becomeFirstResponder];
     }
+}
+
+-(void)didEndLoad
+{
+    [self removeLoaderFromButton];
 }
 
 #pragma mark - UITextFieldDelegate implementation

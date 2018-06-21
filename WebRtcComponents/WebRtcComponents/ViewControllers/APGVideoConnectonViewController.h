@@ -10,5 +10,6 @@
 
 @property (nonatomic,copy) NSString* identity;
 @property (nonatomic,copy) NSString* roomName;
+@property (nonatomic,copy) NSString* authToken;
 
 @end

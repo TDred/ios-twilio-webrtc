@@ -14,5 +14,6 @@
 @property (nonatomic, weak) id<APGCredentialsDelegate> delegate;
 
 -(void)focusOnFirstInput;
+-(void)didEndLoad;
 
 @end

@@ -8,7 +8,8 @@
 
 #import "APGVideoAuthService.h"
 
-static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?identity=%@";
+//static NSString* const AUTH_SERVICE_URL = @"http://192.168.7.84:8080/token?identity=%@";
+static NSString* const AUTH_SERVICE_URL = @"http://192.168.1.108:8080/token?identity=%@";
 
 @interface APGVideoAuthService ()
 

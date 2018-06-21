@@ -10,8 +10,6 @@
 		6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D839C20DAA2D000B3C601 /* UIButton+APGButtonThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */; };
-		6B7D839D20DAA2D000B3C601 /* APGVideoAuthService.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839720DAA2D000B3C601 /* APGVideoAuthService.h */; };
-		6B7D839E20DAA2D000B3C601 /* APGVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D839820DAA2D000B3C601 /* APGVideoAuthService.m */; };
 		6B7D839F20DAA2D000B3C601 /* APGConnectionStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839920DAA2D000B3C601 /* APGConnectionStatus.h */; };
 		6B7D83A020DAA2D000B3C601 /* APGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839A20DAA2D000B3C601 /* APGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D83A120DAA2D000B3C601 /* UIButton+APGButtonThemes.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839B20DAA2D000B3C601 /* UIButton+APGButtonThemes.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -33,8 +31,6 @@
 		6B7D839320DAA17000B3C601 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoViewDelegate.h; sourceTree = "<group>"; };
 		6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+APGButtonThemes.m"; sourceTree = "<group>"; };
-		6B7D839720DAA2D000B3C601 /* APGVideoAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoAuthService.h; sourceTree = "<group>"; };
-		6B7D839820DAA2D000B3C601 /* APGVideoAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGVideoAuthService.m; sourceTree = "<group>"; };
 		6B7D839920DAA2D000B3C601 /* APGConnectionStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGConnectionStatus.h; sourceTree = "<group>"; };
 		6B7D839A20DAA2D000B3C601 /* APGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGUtils.h; sourceTree = "<group>"; };
 		6B7D839B20DAA2D000B3C601 /* UIButton+APGButtonThemes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+APGButtonThemes.h"; sourceTree = "<group>"; };
@@ -119,8 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				6B7D839920DAA2D000B3C601 /* APGConnectionStatus.h */,
-				6B7D839720DAA2D000B3C601 /* APGVideoAuthService.h */,
-				6B7D839820DAA2D000B3C601 /* APGVideoAuthService.m */,
 				6B7D839B20DAA2D000B3C601 /* UIButton+APGButtonThemes.h */,
 				6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */,
 				6B7D839A20DAA2D000B3C601 /* APGUtils.h */,
@@ -151,7 +145,6 @@
 				6B7D83A620DAA2DA00B3C601 /* APGTwoStateButton.h in Headers */,
 				6B7D839F20DAA2D000B3C601 /* APGConnectionStatus.h in Headers */,
 				6B7D83A720DAA2DA00B3C601 /* APGVideoConnectionView.h in Headers */,
-				6B7D839D20DAA2D000B3C601 /* APGVideoAuthService.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,7 +216,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B7D839E20DAA2D000B3C601 /* APGVideoAuthService.m in Sources */,
 				6B7D83A920DAA2DA00B3C601 /* APGVideoConnectionView.m in Sources */,
 				6B7D83AC20DAA2E700B3C601 /* APGVideoConnectonViewController.m in Sources */,
 				6B7D83A820DAA2DA00B3C601 /* APGTwoStateButton.m in Sources */,

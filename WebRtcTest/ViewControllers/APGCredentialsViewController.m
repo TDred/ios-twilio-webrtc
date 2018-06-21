@@ -8,6 +8,7 @@
 
 #import <WebRtcComponents/WebRtcComponents.h>
 #import "APGCredentialsViewController.h"
+#import "APGVideoAuthService.h"
 #import "APGCredentialsView.h"
 
 @interface APGCredentialsViewController ()
@@ -38,10 +39,35 @@
 
 -(void)didEnterCredentials:(NSString *)identity roomName:(NSString *)roomName
 {
-    APGVideoConnectonViewController *videoViewController = [[APGVideoConnectonViewController alloc] init];
-    videoViewController.identity = identity;
-    videoViewController.roomName = roomName;
-    [self presentViewController:videoViewController animated:YES completion:nil];
+    
+    APGVideoAuthService *authService = [APGVideoAuthService sharedService];
+    
+    __weak APGCredentialsViewController* weakSelf = self;
+    [authService getAuthToken:identity fromURL:nil completionBlock:^(NSString *token) {
+        APGCredentialsViewController *strongSelf = weakSelf;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [strongSelf.credentialsView didEndLoad];
+                if (!token) {
+                    [strongSelf showConnectionErrorAlert];
+                    return;
+                }
+        
+                APGVideoConnectonViewController *videoViewController = [[APGVideoConnectonViewController alloc] init];
+                videoViewController.identity = identity;
+                videoViewController.roomName = roomName;
+                videoViewController.authToken = token;
+                [strongSelf presentViewController:videoViewController animated:YES completion:nil];
+            });
+    }];
+    
+}
+
+-(void)showConnectionErrorAlert
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error connecting to server" message:@"Cannot obtain an access token.\nCheck your internet connection" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+    [alertController addAction:dismissAction];
+    [self presentViewController:alertController animated:YES  completion:nil];
 }
 
 @end

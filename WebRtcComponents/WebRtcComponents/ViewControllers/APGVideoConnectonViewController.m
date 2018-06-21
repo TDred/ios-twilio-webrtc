@@ -9,14 +9,12 @@
 #import <TwilioVideo/TwilioVideo.h>
 #import "APGVideoConnectionView.h"
 #import "APGVideoConnectonViewController.h"
-#import "APGVideoAuthService.h"
 #import "APGUtils.h"
 #import "APGConnectionStatus.h"
 
 @interface APGVideoConnectonViewController ()
 
 @property (nonatomic) APGVideoConnectionView *connectionView;
-@property (nonatomic, copy) NSString *authToken;
 
 #pragma mark - Twilio components
 @property (nonatomic) TVILocalVideoTrack *localVideoTrack;
@@ -41,21 +39,12 @@
     [super viewDidAppear:animated];
     [self prepareLocalMedia];
     
-    APGVideoAuthService *authService = [APGVideoAuthService sharedService];
-    [self.connectionView updateConnectionStatus:APGConnectionStatusConnectingToRoom];
-    [authService getAuthToken:self.identity fromURL:nil completionBlock:^(NSString *token) {
-        if (!token) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
-            });
-            return;
-        };
-        
-        self.authToken = token;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self doConnect];
-        });
-    }];
+    if (self.authToken){
+        [self.connectionView updateConnectionStatus:APGConnectionStatusConnectingToRoom];
+        [self doConnect];
+    } else {
+        [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

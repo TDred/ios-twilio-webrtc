@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4290DB6C20D2C7EC002E78AE /* APGUpdatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */; };
+		4290DB7420DBB6D9002E78AE /* APGVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB7220DBB6D8002E78AE /* APGVideoAuthService.m */; };
 		6B0E27472090CDF0009B7CF3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */; };
 		6B7D83AF20DAA30200B3C601 /* WebRtcComponents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */; };
 		6B7D83B020DAA30200B3C601 /* WebRtcComponents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -52,6 +53,8 @@
 		4290DB6A20D2C7EC002E78AE /* APGUpdatableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGUpdatableView.h; sourceTree = "<group>"; };
 		4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGUpdatableView.m; sourceTree = "<group>"; };
 		4290DB6D20D2C81A002E78AE /* APGLayoutUpdatedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGLayoutUpdatedDelegate.h; sourceTree = "<group>"; };
+		4290DB7220DBB6D8002E78AE /* APGVideoAuthService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGVideoAuthService.m; sourceTree = "<group>"; };
+		4290DB7320DBB6D8002E78AE /* APGVideoAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoAuthService.h; sourceTree = "<group>"; };
 		6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebRtcComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WEBRtcTest.app; path = WebRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +195,8 @@
 		6BACF81C20D12AB900E630F7 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4290DB7320DBB6D8002E78AE /* APGVideoAuthService.h */,
+				4290DB7220DBB6D8002E78AE /* APGVideoAuthService.m */,
 				6BACF82A20D15CDB00E630F7 /* UITextField+TextFieldThemes.h */,
 				6BACF82B20D15CDB00E630F7 /* UITextField+TextFieldThemes.m */,
 			);
@@ -234,7 +239,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WebRtcTest" */;
+			buildConfigurationList = 6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WEBRtcTest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BACF82620D14A4D00E630F7 /* APGCredentialsView.m in Sources */,
+				4290DB7420DBB6D9002E78AE /* APGVideoAuthService.m in Sources */,
 				6BACF82320D14A3400E630F7 /* APGCredentialsViewController.m in Sources */,
 				6B831103208F6AF5003960F2 /* main.m in Sources */,
 				6BACF82C20D15CDB00E630F7 /* UITextField+TextFieldThemes.m in Sources */,
@@ -469,7 +475,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WebRtcTest" */ = {
+		6B8310EB208F6AEC003960F2 /* Build configuration list for PBXProject "WEBRtcTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6B831104208F6AF5003960F2 /* Debug */,
