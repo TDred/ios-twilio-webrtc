@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "APGUtils.h"
-#import "APGVideoConnectonViewController.h"
+#import "APGVideoConnectionViewController.h"
 #import "UIButton+APGButtonThemes.h"
 
 //! Project version number for WebRtcComponents.

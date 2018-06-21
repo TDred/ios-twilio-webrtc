@@ -6,7 +6,7 @@
 #import <TwilioVideo/TwilioVideo.h>
 #import "APGVideoViewDelegate.h"
 
-@interface APGVideoConnectonViewController : UIViewController <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
+@interface APGVideoConnectionViewController : UIViewController <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
 
 @property (nonatomic,copy) NSString* identity;
 @property (nonatomic,copy) NSString* roomName;

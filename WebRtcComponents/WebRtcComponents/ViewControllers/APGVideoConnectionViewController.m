@@ -8,11 +8,11 @@
 
 #import <TwilioVideo/TwilioVideo.h>
 #import "APGVideoConnectionView.h"
-#import "APGVideoConnectonViewController.h"
+#import "APGVideoConnectionViewController.h"
 #import "APGUtils.h"
 #import "APGConnectionStatus.h"
 
-@interface APGVideoConnectonViewController ()
+@interface APGVideoConnectionViewController ()
 
 @property (nonatomic) APGVideoConnectionView *connectionView;
 
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation APGVideoConnectonViewController
+@implementation APGVideoConnectionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -130,7 +130,6 @@
 - (void)startPreview {
     // TVICameraCapturer is not supported with the Simulator.
 #if TARGET_IPHONE_SIMULATOR
-    [self.connectionView removeRemoteVideo];
     return;
 #endif
     

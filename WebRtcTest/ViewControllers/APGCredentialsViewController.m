@@ -52,7 +52,7 @@
                     return;
                 }
         
-                APGVideoConnectonViewController *videoViewController = [[APGVideoConnectonViewController alloc] init];
+                APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] init];
                 videoViewController.identity = identity;
                 videoViewController.roomName = roomName;
                 videoViewController.authToken = token;

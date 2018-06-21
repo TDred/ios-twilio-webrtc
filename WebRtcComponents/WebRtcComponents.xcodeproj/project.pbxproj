@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		4290DB7520DC54FB002E78AE /* WebRtcComponents-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 4290DB7620DC54FB002E78AE /* Build configuration list for PBXAggregateTarget "WebRtcComponents-Universal" */;
+			buildPhases = (
+				4290DB7920DC550C002E78AE /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "WebRtcComponents-Universal";
+			productName = "WebRtcComponents-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -17,8 +31,8 @@
 		6B7D83A720DAA2DA00B3C601 /* APGVideoConnectionView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D83A320DAA2DA00B3C601 /* APGVideoConnectionView.h */; };
 		6B7D83A820DAA2DA00B3C601 /* APGTwoStateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D83A420DAA2DA00B3C601 /* APGTwoStateButton.m */; };
 		6B7D83A920DAA2DA00B3C601 /* APGVideoConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D83A520DAA2DA00B3C601 /* APGVideoConnectionView.m */; };
-		6B7D83AC20DAA2E700B3C601 /* APGVideoConnectonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D83AA20DAA2E700B3C601 /* APGVideoConnectonViewController.m */; };
-		6B7D83AD20DAA2E700B3C601 /* APGVideoConnectonViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D83AB20DAA2E700B3C601 /* APGVideoConnectonViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B7D83AC20DAA2E700B3C601 /* APGVideoConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D83AA20DAA2E700B3C601 /* APGVideoConnectionViewController.m */; };
+		6B7D83AD20DAA2E700B3C601 /* APGVideoConnectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D83AB20DAA2E700B3C601 /* APGVideoConnectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D83B220DAA3FE00B3C601 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B7D83B120DAA3FE00B3C601 /* Assets.xcassets */; };
 		6B7D83B520DAA5D500B3C601 /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7D83B320DAA5D500B3C601 /* Masonry.framework */; };
 		6B7D83B620DAA5D500B3C601 /* TwilioVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7D83B420DAA5D500B3C601 /* TwilioVideo.framework */; };
@@ -38,8 +52,8 @@
 		6B7D83A320DAA2DA00B3C601 /* APGVideoConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionView.h; sourceTree = "<group>"; };
 		6B7D83A420DAA2DA00B3C601 /* APGTwoStateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGTwoStateButton.m; sourceTree = "<group>"; };
 		6B7D83A520DAA2DA00B3C601 /* APGVideoConnectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectionView.m; sourceTree = "<group>"; };
-		6B7D83AA20DAA2E700B3C601 /* APGVideoConnectonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectonViewController.m; sourceTree = "<group>"; };
-		6B7D83AB20DAA2E700B3C601 /* APGVideoConnectonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectonViewController.h; sourceTree = "<group>"; };
+		6B7D83AA20DAA2E700B3C601 /* APGVideoConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectionViewController.m; sourceTree = "<group>"; };
+		6B7D83AB20DAA2E700B3C601 /* APGVideoConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionViewController.h; sourceTree = "<group>"; };
 		6B7D83B120DAA3FE00B3C601 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B7D83B320DAA5D500B3C601 /* Masonry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Masonry.framework; path = WebRtcComponents/Carthage/Build/iOS/Masonry.framework; sourceTree = "<group>"; };
 		6B7D83B420DAA5D500B3C601 /* TwilioVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TwilioVideo.framework; path = WebRtcComponents/Carthage/Build/iOS/TwilioVideo.framework; sourceTree = "<group>"; };
@@ -94,8 +108,8 @@
 		6B7D838F20DAA11600B3C601 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				6B7D83AB20DAA2E700B3C601 /* APGVideoConnectonViewController.h */,
-				6B7D83AA20DAA2E700B3C601 /* APGVideoConnectonViewController.m */,
+				6B7D83AB20DAA2E700B3C601 /* APGVideoConnectionViewController.h */,
+				6B7D83AA20DAA2E700B3C601 /* APGVideoConnectionViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -138,7 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */,
-				6B7D83AD20DAA2E700B3C601 /* APGVideoConnectonViewController.h in Headers */,
+				6B7D83AD20DAA2E700B3C601 /* APGVideoConnectionViewController.h in Headers */,
 				6B7D83A120DAA2D000B3C601 /* UIButton+APGButtonThemes.h in Headers */,
 				6B7D83A020DAA2D000B3C601 /* APGUtils.h in Headers */,
 				6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */,
@@ -178,6 +192,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "App Gear";
 				TargetAttributes = {
+					4290DB7520DC54FB002E78AE = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					6B0CBEB420DA9E1F0031FF72 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -196,6 +213,7 @@
 			projectRoot = "";
 			targets = (
 				6B0CBEB420DA9E1F0031FF72 /* WebRtcComponents */,
+				4290DB7520DC54FB002E78AE /* WebRtcComponents-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -211,13 +229,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4290DB7920DC550C002E78AE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "######################\n# Options\n######################\n\nREVEAL_ARCHIVE_IN_FINDER=true\n\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\n\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\n\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\n\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n\nopen \"${BUILD_DIR}/\"\n\n######################\n# Build Frameworks\n######################\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -scheme ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\n\nxcodebuild -project ${PROJECT_NAME}.xcodeproj -scheme ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n\n######################\n# Create directory for universal\n######################\n\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\n\nmkdir \"${FRAMEWORK}\"\n\n\n######################\n# Copy files Framework\n######################\n\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n\n\n######################\n# Make an universal binary\n######################\n\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n    cp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/ \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\n                                                                      \nif [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\n    cp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/ \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\n\n######################\n# On Release, copy the result to release directory\n######################\nOUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\n\nrm -rf \"$OUTPUT_DIR\"\nmkdir -p \"$OUTPUT_DIR\"\n\ncp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\n\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nopen \"${OUTPUT_DIR}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6B0CBEB020DA9E1F0031FF72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6B7D83A920DAA2DA00B3C601 /* APGVideoConnectionView.m in Sources */,
-				6B7D83AC20DAA2E700B3C601 /* APGVideoConnectonViewController.m in Sources */,
+				6B7D83AC20DAA2E700B3C601 /* APGVideoConnectionViewController.m in Sources */,
 				6B7D83A820DAA2DA00B3C601 /* APGTwoStateButton.m in Sources */,
 				6B7D839C20DAA2D000B3C601 /* UIButton+APGButtonThemes.m in Sources */,
 			);
@@ -226,6 +260,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		4290DB7720DC54FB002E78AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6K37UCPBKA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4290DB7820DC54FB002E78AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6K37UCPBKA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		6B0CBEBB20DA9E1F0031FF72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -359,6 +411,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				INFOPLIST_FILE = WebRtcComponents/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -389,6 +442,7 @@
 				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/**";
 				INFOPLIST_FILE = WebRtcComponents/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,6 +459,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4290DB7620DC54FB002E78AE /* Build configuration list for PBXAggregateTarget "WebRtcComponents-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4290DB7720DC54FB002E78AE /* Debug */,
+				4290DB7820DC54FB002E78AE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6B0CBEAF20DA9E1F0031FF72 /* Build configuration list for PBXProject "WebRtcComponents" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
