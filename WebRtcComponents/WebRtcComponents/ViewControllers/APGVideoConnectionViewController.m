@@ -12,7 +12,7 @@
 #import "APGUtils.h"
 #import "APGConnectionStatus.h"
 
-@interface APGVideoConnectionViewController ()
+@interface APGVideoConnectionViewController () <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
 
 @property (nonatomic) APGVideoConnectionView *connectionView;
 
@@ -29,7 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.connectionView = [[APGVideoConnectionView alloc] init];
+    
+    if (self.controlsColor && self.controlsHighlightColor) {
+        self.connectionView = [[APGVideoConnectionView alloc] initWithColor:self.controlsColor highlightColor:self.controlsHighlightColor];
+    } else {
+        self.connectionView = [[APGVideoConnectionView alloc] init];
+    }
+    
     self.view = self.connectionView;
     self.connectionView.delegate = self;
 }
@@ -87,7 +93,11 @@
 -(void)endCall
 {
     [self.room disconnect];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    if (!self.delegate && self.presentingViewController) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.delegate callEnded:self];
+    }
 }
 
 -(void)switchCamera

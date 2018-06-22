@@ -3,13 +3,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TwilioVideo/TwilioVideo.h>
-#import "APGVideoViewDelegate.h"
+#import "APGVideoConnectionViewControllerDelegate.h"
 
-@interface APGVideoConnectionViewController : UIViewController <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
+@interface APGVideoConnectionViewController : UIViewController 
 
+@property (nonatomic, weak) id<APGVideoConnectionViewControllerDelegate> delegate;
 @property (nonatomic,copy) NSString* identity;
 @property (nonatomic,copy) NSString* roomName;
 @property (nonatomic,copy) NSString* authToken;
+@property (nonatomic) UIColor *controlsColor;
+@property (nonatomic) UIColor *controlsHighlightColor;
 
 @end

@@ -15,6 +15,7 @@
 
 @property (nonatomic, weak) id<APGVideoViewDelegate> delegate;
 
+-(instancetype)initWithColor:(UIColor*)color highlightColor:(UIColor*)highlightColor;
 -(void)setLocalVideoTrack:(TVILocalVideoTrack*)videoTrack;
 -(void)setRemoteVideoTrack:(TVIRemoteVideoTrack*)videoTrack;
 -(void)removeRemoteVideoTrack:(TVIRemoteVideoTrack*)videoTrack;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "APGUtils.h"
+#import "APGVideoConnectionViewControllerDelegate.h"
 #import "APGVideoConnectionViewController.h"
 #import "UIButton+APGButtonThemes.h"
 

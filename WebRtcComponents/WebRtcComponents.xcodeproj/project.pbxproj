@@ -21,8 +21,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		4290DB7B20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */; };
 		6B7D839C20DAA2D000B3C601 /* UIButton+APGButtonThemes.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */; };
 		6B7D839F20DAA2D000B3C601 /* APGConnectionStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839920DAA2D000B3C601 /* APGConnectionStatus.h */; };
 		6B7D83A020DAA2D000B3C601 /* APGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839A20DAA2D000B3C601 /* APGUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionViewControllerDelegate.h; sourceTree = "<group>"; };
 		6B0CBEB520DA9E1F0031FF72 /* WebRtcComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebRtcComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebRtcComponents.h; sourceTree = "<group>"; };
 		6B0CBEB920DA9E1F0031FF72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */,
+				4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 			files = (
 				6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */,
 				6B7D83AD20DAA2E700B3C601 /* APGVideoConnectionViewController.h in Headers */,
+				4290DB7B20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h in Headers */,
 				6B7D83A120DAA2D000B3C601 /* UIButton+APGButtonThemes.h in Headers */,
 				6B7D83A020DAA2D000B3C601 /* APGUtils.h in Headers */,
 				6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */,
