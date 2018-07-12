@@ -6,10 +6,15 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
+#import <WebRtcComponents/WebRtcComponents.h>
+#import <PushKit/PushKit.h>
 #import "AppDelegate.h"
+#import "APGVideoAuthService.h"
 #import "APGCredentialsViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <PKPushRegistryDelegate>
+
+@property (nonatomic) PKPushRegistry *pushRegistry;
 
 @end
 
@@ -22,9 +27,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[APGCredentialsViewController alloc] init];
     [self.window makeKeyAndVisible];
+    
+    self.pushRegistry = [[PKPushRegistry alloc] initWithQueue:nil];
+    self.pushRegistry.delegate = self;
+    self.pushRegistry.desiredPushTypes = [[NSSet alloc] initWithArray:@[PKPushTypeVoIP]];
+    
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -50,6 +59,43 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+#pragma mark - PKPushRegistryDelegate
+
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)pushCredentials forType:(PKPushType)type
+{
+    const char *data = [pushCredentials.token bytes];
+    NSMutableString *token = [NSMutableString string];
+    
+    for (NSUInteger i = 0; i < [pushCredentials.token length]; i++) {
+        [token appendFormat:@"%02.2hhX", data[i]];
+    }
+    
+    NSLog(@"PK Push Registry Device Token: %@", [token lowercaseString]);
+}
+
+-(void)pushRegistry:(PKPushRegistry *)registry didReceiveIncomingPushWithPayload:(PKPushPayload *)payload forType:(PKPushType)type withCompletionHandler:(void (^)(void))completion
+{
+    NSString *room = payload.dictionaryPayload[@"room"];
+    APGVideoAuthService *authService = [APGVideoAuthService sharedService];
+    [authService getAuthToken:@"Bob" fromURL:nil completionBlock:^(NSString *token) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!token) {
+                NSLog(@"Error getting access token");
+                return;
+            }
+            
+            APGVideoConnectionViewController *callViewController = [[APGVideoConnectionViewController alloc] initWithToken:token];
+            [callViewController setProviderImage:[UIImage imageNamed:@"iLobby_logo_call_small"]];
+            UIViewController *rootViewController = self.window.rootViewController;
+            [rootViewController presentViewController:callViewController animated:YES completion:nil];
+            [callViewController reportIncomingCall:[NSUUID UUID] room:room];
+            
+            completion();
+        });
+    }];
 }
 
 

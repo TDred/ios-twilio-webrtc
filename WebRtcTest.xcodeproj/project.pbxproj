@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4276742620F384D800844794 /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4276742520F384D800844794 /* CallKit.framework */; };
+		4276742820F389D500844794 /* PushKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4276742720F389D500844794 /* PushKit.framework */; };
 		4290DB6C20D2C7EC002E78AE /* APGUpdatableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */; };
 		4290DB7420DBB6D9002E78AE /* APGVideoAuthService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4290DB7220DBB6D8002E78AE /* APGVideoAuthService.m */; };
 		6B0E27472090CDF0009B7CF3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */; };
@@ -49,6 +51,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4276742520F384D800844794 /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		4276742720F389D500844794 /* PushKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PushKit.framework; path = System/Library/Frameworks/PushKit.framework; sourceTree = SDKROOT; };
+		4276742920F396E800844794 /* WebRtcTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WebRtcTest.entitlements; sourceTree = "<group>"; };
 		4290DB6920D2A47D002E78AE /* APGCredentialsDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGCredentialsDelegate.h; sourceTree = "<group>"; };
 		4290DB6A20D2C7EC002E78AE /* APGUpdatableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGUpdatableView.h; sourceTree = "<group>"; };
 		4290DB6B20D2C7EC002E78AE /* APGUpdatableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGUpdatableView.m; sourceTree = "<group>"; };
@@ -57,7 +62,7 @@
 		4290DB7320DBB6D8002E78AE /* APGVideoAuthService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APGVideoAuthService.h; sourceTree = "<group>"; };
 		6B0E27462090CDF0009B7CF3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6B7D83AE20DAA30200B3C601 /* WebRtcComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WebRtcComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WEBRtcTest.app; path = WebRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B8310F0208F6AEC003960F2 /* WebRtcTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebRtcTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B8310F3208F6AEC003960F2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6B8310F4208F6AEC003960F2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6B8310FC208F6AF5003960F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4276742820F389D500844794 /* PushKit.framework in Frameworks */,
+				4276742620F384D800844794 /* CallKit.framework in Frameworks */,
 				6BACF81120D1269D00E630F7 /* VideoToolbox.framework in Frameworks */,
 				6BACF81220D1269D00E630F7 /* AudioToolbox.framework in Frameworks */,
 				6BACF81920D128C000E630F7 /* Masonry.framework in Frameworks */,
@@ -151,7 +158,7 @@
 		6B8310F1208F6AEC003960F2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */,
+				6B8310F0208F6AEC003960F2 /* WebRtcTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 		6B8310F2208F6AEC003960F2 /* WebRtcTest */ = {
 			isa = PBXGroup;
 			children = (
+				4276742920F396E800844794 /* WebRtcTest.entitlements */,
 				4290DB6820D2A446002E78AE /* Protocols */,
 				6BACF81C20D12AB900E630F7 /* Common */,
 				6B1B13B820CBCA21000CE733 /* ViewControllers */,
@@ -178,6 +186,8 @@
 		6B83110D208F724E003960F2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4276742720F389D500844794 /* PushKit.framework */,
+				4276742520F384D800844794 /* CallKit.framework */,
 				6BACF80B20D1269C00E630F7 /* AudioToolbox.framework */,
 				6BACF80C20D1269C00E630F7 /* CoreMedia.framework */,
 				6BACF80D20D1269C00E630F7 /* CoreTelephony.framework */,
@@ -222,7 +232,7 @@
 			);
 			name = WebRtcTest;
 			productName = WebRtcTest;
-			productReference = 6B8310F0208F6AEC003960F2 /* WEBRtcTest.app */;
+			productReference = 6B8310F0208F6AEC003960F2 /* WebRtcTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -236,6 +246,14 @@
 				TargetAttributes = {
 					6B8310EF208F6AEC003960F2 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -432,8 +450,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WebRtcTest/WebRtcTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8C29WJ9WR;
+				DEVELOPMENT_TEAM = 6K37UCPBKA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WebRtcTest/Carthage/Build/iOS",
@@ -444,7 +463,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WebRtcTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appgear.iLobbyPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -454,8 +473,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = WebRtcTest/WebRtcTest.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A8C29WJ9WR;
+				DEVELOPMENT_TEAM = 6K37UCPBKA;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WebRtcTest/Carthage/Build/iOS",
@@ -466,7 +486,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ca.appgear.WebRtcTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appgear.iLobbyPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

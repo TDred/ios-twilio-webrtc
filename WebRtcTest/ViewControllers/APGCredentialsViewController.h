@@ -12,5 +12,4 @@
 @interface APGCredentialsViewController : UIViewController <APGCredentialsDelegate>
 
 
-
 @end

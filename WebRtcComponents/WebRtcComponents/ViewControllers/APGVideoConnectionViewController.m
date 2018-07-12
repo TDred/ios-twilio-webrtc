@@ -15,8 +15,17 @@
 @interface APGVideoConnectionViewController () <APGVideoViewDelegate, TVICameraCapturerDelegate, TVIVideoViewDelegate, TVIRemoteParticipantDelegate, TVIRoomDelegate>
 
 @property (nonatomic) APGVideoConnectionView *connectionView;
+@property (nonatomic, copy) NSString* token;
+@property (nonatomic, copy) NSString* roomName;
+
+#pragma mark - CallKit
+@property (nonatomic) CXProvider *provider;
+@property (nonatomic) CXCallController *controller;
+@property (nonatomic) CXProviderConfiguration *configuration;
+@property (nonatomic, copy) void(^callKitCompletionHandler)(BOOL);
 
 #pragma mark - Twilio components
+@property (nonatomic) TVIDefaultAudioDevice *audioDevice;
 @property (nonatomic) TVILocalVideoTrack *localVideoTrack;
 @property (nonatomic) TVILocalAudioTrack *localAudioTrack;
 @property (nonatomic) TVIRemoteParticipant *remoteParticipant;
@@ -27,8 +36,54 @@
 
 @implementation APGVideoConnectionViewController
 
+-(instancetype)init
+{
+    return [self initWithToken:nil room:nil];
+}
+
+-(instancetype)initWithToken:(NSString *)token
+{
+    return [self initWithToken:token room:nil];
+}
+
+-(instancetype)initWithToken:(NSString *)token room:(NSString *)room
+{
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    //TODO:make external setup
+    self.configuration = [[CXProviderConfiguration alloc] initWithLocalizedName:@"iLobby"];
+    self.configuration.supportsVideo = true;
+    self.configuration.maximumCallsPerCallGroup = 1;
+    //TODO:make external setup
+    
+    self.provider = [[CXProvider alloc] initWithConfiguration:self.configuration];
+    [self.provider setDelegate:self queue:nil];
+    
+    self.controller = [[CXCallController alloc] init];
+    self.token = token;
+    self.roomName = room;
+    return self;
+}
+
+-(void)setProviderImage:(UIImage *)image
+{
+    [self.configuration setIconTemplateImageData:UIImagePNGRepresentation(image)];
+}
+
+-(void)setRingtone:(NSString*)ringtone
+{
+    [self.configuration setRingtoneSound:ringtone];
+}
+
+#pragma mark - UIViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.audioDevice = [TVIDefaultAudioDevice audioDevice];
+    TwilioVideo.audioDevice = self.audioDevice;
     
     if (self.controlsColor && self.controlsHighlightColor) {
         self.connectionView = [[APGVideoConnectionView alloc] initWithColor:self.controlsColor highlightColor:self.controlsHighlightColor];
@@ -43,13 +98,9 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self prepareLocalMedia];
     
-    if (self.authToken){
-        [self.connectionView updateConnectionStatus:APGConnectionStatusConnectingToRoom];
-        [self doConnect];
-    } else {
-        [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    if (self.connectOnLaunch) {
+        [self performStartCallAction:[NSUUID UUID] room:self.roomName];
     }
 }
 
@@ -70,9 +121,23 @@
     }];
 }
 
--(void)doConnect
+#pragma mark - Private helpers
+
+- (void)connect:(NSString*)room uuid:(NSUUID*)uuid token:(NSString*)token
 {
-    TVIConnectOptions *connectOptions = [TVIConnectOptions optionsWithToken:self.authToken
+    [self prepareLocalMedia];
+    
+    if (token){
+        [self.connectionView updateConnectionStatus:APGConnectionStatusConnectingToRoom];
+        [self establishConnection:room uuid:uuid token:token];
+    } else {
+        [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    }
+}
+
+-(void)establishConnection:(NSString*)room uuid:(NSUUID*)uuid token:(NSString*)token
+{
+    TVIConnectOptions *connectOptions = [TVIConnectOptions optionsWithToken:token
                                                                       block:^(TVIConnectOptionsBuilder * _Nonnull builder) {
                                                                           
                                                                           // Use the local media that we prepared earlier.
@@ -81,18 +146,19 @@
                                                                           
                                                                           // The name of the Room where the Client will attempt to connect to. Please note that if you pass an empty
                                                                           // Room `name`, the Client will create one for you. You can get the name or sid from any connected Room.
-                                                                          builder.roomName = self.roomName;
+                                                                          builder.roomName = room;
+                                                                          builder.uuid = uuid;
                                                                       }];
     
     // Connect to the Room using the options we provided.
     self.room = [TwilioVideo connectWithOptions:connectOptions delegate:self];
-    [self logStatusWithMessage:[NSString stringWithFormat:@"Attempting to connect to room %@", self.roomName]];
+    [self logStatusWithMessage:[NSString stringWithFormat:@"Attempting to connect to room %@", room]];
 }
 
 #pragma mark - CRVideoViewDelegate
 -(void)endCall
 {
-    [self.room disconnect];
+    [self performEndCallAction:self.room.uuid];
     if (!self.delegate && self.presentingViewController) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     } else {
@@ -189,6 +255,22 @@
         self.remoteParticipant = room.remoteParticipants[0];
         self.remoteParticipant.delegate = self;
     }
+    
+    NSArray<CXCall*> *calls = self.controller.callObserver.calls;
+    NSUUID *callUUID = room.uuid;
+    CXCall *currentCall;
+    for (CXCall *call in calls) {
+        if (call.UUID == callUUID) {
+            currentCall = call;
+            break;
+        }
+    }
+    
+    //add outgoing call to journal
+    if (currentCall && currentCall.isOutgoing) {
+        [self.provider reportOutgoingCallWithUUID:callUUID connectedAtDate:[NSDate date]];
+    }
+    self.callKitCompletionHandler(YES);
 }
 
 - (void)room:(TVIRoom *)room didDisconnectWithError:(nullable NSError *)error {
@@ -196,12 +278,14 @@
     [self updateConnectionStatus:APGConnectionStatusDisconnectedDueToError];
     [self updateConnectionStatus:APGConnectionStatusFailedToConnect];
     [self cleanupRemoteParticipant];
+    self.callKitCompletionHandler = nil;
     self.room = nil;
 }
 
 - (void)room:(TVIRoom *)room didFailToConnectWithError:(nonnull NSError *)error{
     [self logStatusWithMessage:[NSString stringWithFormat:@"Failed to connect to room, error = %@", error]];
     [self updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    self.callKitCompletionHandler(NO);
     self.room = nil;
 }
 
@@ -357,6 +441,148 @@
 
 - (void)cameraCapturer:(TVICameraCapturer *)capturer didStartWithSource:(TVICameraCaptureSource)source {
     [self.connectionView setNeedsMirrorCamera:(source == TVICameraCaptureSourceFrontCamera)];
+}
+
+#pragma mark - CXProviderDelegate implementation
+
+-(void)providerDidReset:(CXProvider *)provider
+{
+    NSLog(@"Provider did reset");
+    [self.audioDevice setEnabled:YES];
+    [self.room disconnect];
+}
+
+-(void)providerDidBegin:(CXProvider *)provider
+{
+    NSLog(@"Provider did begin call");
+}
+
+-(void)provider:(CXProvider *)provider didActivateAudioSession:(AVAudioSession *)audioSession
+{
+    [self.audioDevice setEnabled:YES];
+    NSLog(@"Provider did activate audio session");
+}
+
+-(void)provider:(CXProvider *)provider didDeactivateAudioSession:(AVAudioSession *)audioSession
+{
+    NSLog(@"Provider did deactivate audio session");
+}
+
+-(void)provider:(CXProvider *)provider timedOutPerformingAction:(CXAction *)action
+{
+    NSLog(@"Provider timed out performing action: %@", action);
+}
+
+-(void)provider:(CXProvider *)provider performStartCallAction:(CXStartCallAction *)action
+{
+    NSLog(@"Provider started a call");
+    [self.audioDevice setEnabled:NO];
+    self.audioDevice.block();
+    
+    [self performRoomConnect:action.callUUID room:action.handle.value completion:^(BOOL success) {
+        if (success) {
+            [provider reportOutgoingCallWithUUID:action.callUUID connectedAtDate:[NSDate date]];
+            [action fulfill];
+        } else {
+            [action fail];
+        }
+    }];
+}
+
+-(void)provider:(CXProvider *)provider performAnswerCallAction:(CXAnswerCallAction *)action
+{
+    NSLog(@"Provider answered a call");
+    [self.audioDevice setEnabled:NO];
+    self.audioDevice.block();
+    
+    [self performRoomConnect:action.callUUID room:self.roomName completion:^(BOOL success) {
+        if (success) {
+            [action fulfillWithDateConnected:[NSDate date]];
+        } else {
+            [action fail];
+        }
+    }];
+    
+}
+
+-(void)provider:(CXProvider *)provider performEndCallAction:(CXEndCallAction *)action
+{
+    NSLog(@"Provider ended a call");
+    [self.audioDevice setEnabled:YES];
+    [self.room disconnect];
+    [action fulfill];
+}
+
+-(void)provider:(CXProvider *)provider performSetMutedCallAction:(CXSetMutedCallAction *)action
+{
+    //TODO:enable mute
+}
+
+-(void)provider:(CXProvider *)provider performSetHeldCallAction:(CXSetHeldCallAction *)action
+{
+    //TODO:enable call hold
+}
+
+
+#pragma mark - Public interface
+
+-(void)reportIncomingCall:(NSUUID *)uuid room:(NSString *)room
+{
+    CXHandle *callHandle = [[CXHandle alloc] initWithType:CXHandleTypeGeneric value:room];
+    CXCallUpdate *callUpdate = [[CXCallUpdate alloc] init];
+    callUpdate.remoteHandle = callHandle;
+    callUpdate.supportsDTMF = NO;
+    callUpdate.supportsHolding = YES;
+    callUpdate.supportsUngrouping = NO;
+    callUpdate.supportsGrouping = NO;
+    callUpdate.hasVideo = YES;
+    
+    self.roomName = room;
+    [self.provider reportNewIncomingCallWithUUID:uuid update:callUpdate completion:^(NSError *error) {
+        if (error) {
+            NSLog(@"Error reporting incoming call: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Incoming call successfully reported");
+        }
+    }];
+    
+}
+
+-(void)performStartCallAction:(NSUUID *)uuid room:(NSString*)room
+{
+    CXHandle *callHandle = [[CXHandle alloc] initWithType:CXHandleTypeGeneric value:room];
+    CXStartCallAction *startCallAction = [[CXStartCallAction alloc] initWithCallUUID:uuid handle:callHandle];
+    [startCallAction setVideo:YES];
+    
+    CXTransaction *startCallTransaction = [[CXTransaction alloc] initWithAction:startCallAction];
+    [self.controller requestTransaction:startCallTransaction completion:^(NSError *error) {
+        if (error) {
+            NSLog(@"Start call transaction failed: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Start call transaction request secceed");
+        }
+    }];
+}
+
+-(void)performEndCallAction:(NSUUID *)uuid
+{
+    CXEndCallAction *endCallAction = [[CXEndCallAction alloc] initWithCallUUID:uuid];
+    CXTransaction *endCallTransaction = [[CXTransaction alloc] initWithAction:endCallAction];
+    
+    [self.controller requestTransaction:endCallTransaction completion:^(NSError *error) {
+        if (error) {
+            NSLog(@"End call transaction failed: %@", error.localizedDescription);
+        } else {
+            NSLog(@"End call transaction succeed");
+        }
+    }];
+}
+
+-(void)performRoomConnect:(NSUUID *)uuid room:(NSString *)room completion:(void (^)(BOOL))completion
+{
+    self.roomName = room;
+    [self connect:room uuid:uuid token:self.token];
+    self.callKitCompletionHandler = completion;
 }
 
 @end

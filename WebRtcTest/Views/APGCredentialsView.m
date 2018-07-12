@@ -48,11 +48,13 @@
     self.txtName = [[UITextField alloc] init];
     self.txtName.delegate = self;
     self.txtName.tag = 1;
+    self.txtName.text = @"Alice";
     [self addSubview:self.txtName];
     
     self.txtRoom = [[UITextField alloc] init];
     self.txtRoom.delegate = self;
     self.txtRoom.tag = 2;
+    self.txtRoom.text = @"Canrus";
     [self addSubview:self.txtRoom];
     
     self.aiLoader = [[UIActivityIndicatorView alloc] init];

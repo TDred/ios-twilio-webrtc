@@ -15,6 +15,7 @@
 
 @property (nonatomic) APGCredentialsView* credentialsView;
 
+
 @end
 
 @implementation APGCredentialsViewController
@@ -52,10 +53,9 @@
                     return;
                 }
         
-                APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] init];
-                videoViewController.identity = identity;
-                videoViewController.roomName = roomName;
-                videoViewController.authToken = token;
+                APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] initWithToken:token room:roomName];
+                [videoViewController setProviderImage:[UIImage imageNamed:@"iLobby_logo_call_small.png"]];
+                videoViewController.connectOnLaunch = YES;
                 [strongSelf presentViewController:videoViewController animated:YES completion:nil];
             });
     }];
