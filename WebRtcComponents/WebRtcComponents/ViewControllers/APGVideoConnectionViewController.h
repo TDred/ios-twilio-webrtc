@@ -4,6 +4,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CallKit/CallKit.h>
+#import "APGVideoConnectionControllerOptions.h"
 #import "APGVideoConnectionViewControllerDelegate.h"
 
 @interface APGVideoConnectionViewController : UIViewController<CXProviderDelegate>
@@ -13,10 +14,8 @@
 @property (nonatomic) UIColor *controlsColor;
 @property (nonatomic) UIColor *controlsHighlightColor;
 
--(instancetype)initWithToken:(NSString*)token room:(NSString*)room;
--(instancetype)initWithToken:(NSString *)token;
--(void)setProviderImage:(UIImage*)image;
--(void)setRingtone:(NSString*)ringtone;
+-(instancetype)initWithToken:(NSString*)token room:(NSString*)room options:(APGVideoConnectionControllerOptions*)options;
+-(instancetype)initWithToken:(NSString *)token options:(APGVideoConnectionControllerOptions*)options;;
 -(void)reportIncomingCall:(NSUUID*)uuid room:(NSString*)room;
 -(void)performStartCallAction:(NSUUID*)uuid room:(NSString*)room;
 -(void)performEndCallAction:(NSUUID*)uuid;

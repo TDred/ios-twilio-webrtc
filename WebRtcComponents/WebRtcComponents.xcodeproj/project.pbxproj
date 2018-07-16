@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		423EA21B20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 423EA21920FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		423EA21C20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 423EA21A20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m */; };
 		4290DB7B20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6B7D839520DAA2AA00B3C601 /* APGVideoViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */; };
@@ -40,6 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		423EA21920FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionControllerOptions.h; sourceTree = "<group>"; };
+		423EA21A20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APGVideoConnectionControllerOptions.m; sourceTree = "<group>"; };
 		4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APGVideoConnectionViewControllerDelegate.h; sourceTree = "<group>"; };
 		6B0CBEB520DA9E1F0031FF72 /* WebRtcComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebRtcComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0CBEB820DA9E1F0031FF72 /* WebRtcComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebRtcComponents.h; sourceTree = "<group>"; };
@@ -134,6 +138,8 @@
 				6B7D839B20DAA2D000B3C601 /* UIButton+APGButtonThemes.h */,
 				6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */,
 				6B7D839A20DAA2D000B3C601 /* APGUtils.h */,
+				423EA21920FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h */,
+				423EA21A20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -156,6 +162,7 @@
 			files = (
 				6B0CBEBA20DA9E1F0031FF72 /* WebRtcComponents.h in Headers */,
 				6B7D83AD20DAA2E700B3C601 /* APGVideoConnectionViewController.h in Headers */,
+				423EA21B20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h in Headers */,
 				4290DB7B20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h in Headers */,
 				6B7D83A120DAA2D000B3C601 /* UIButton+APGButtonThemes.h in Headers */,
 				6B7D83A020DAA2D000B3C601 /* APGUtils.h in Headers */,
@@ -255,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B7D83A920DAA2DA00B3C601 /* APGVideoConnectionView.m in Sources */,
+				423EA21C20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m in Sources */,
 				6B7D83AC20DAA2E700B3C601 /* APGVideoConnectionViewController.m in Sources */,
 				6B7D83A820DAA2DA00B3C601 /* APGTwoStateButton.m in Sources */,
 				6B7D839C20DAA2D000B3C601 /* UIButton+APGButtonThemes.m in Sources */,

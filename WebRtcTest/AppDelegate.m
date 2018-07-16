@@ -87,8 +87,9 @@
                 return;
             }
             
-            APGVideoConnectionViewController *callViewController = [[APGVideoConnectionViewController alloc] initWithToken:token];
-            [callViewController setProviderImage:[UIImage imageNamed:@"iLobby_logo_call_small"]];
+            APGVideoConnectionControllerOptions *options = [[APGVideoConnectionControllerOptions alloc] init];
+            options.appIcon = UIImagePNGRepresentation([UIImage imageNamed:@"iLobby_logo_call_small"]);
+            APGVideoConnectionViewController *callViewController = [[APGVideoConnectionViewController alloc] initWithToken:token options:options];
             UIViewController *rootViewController = self.window.rootViewController;
             [rootViewController presentViewController:callViewController animated:YES completion:nil];
             [callViewController reportIncomingCall:[NSUUID UUID] room:room];

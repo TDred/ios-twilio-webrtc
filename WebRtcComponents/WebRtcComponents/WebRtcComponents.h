@@ -11,6 +11,7 @@
 #import "APGUtils.h"
 #import "APGVideoConnectionViewControllerDelegate.h"
 #import "APGVideoConnectionViewController.h"
+#import "APGVideoConnectionControllerOptions.h"
 #import "UIButton+APGButtonThemes.h"
 
 //! Project version number for WebRtcComponents.

@@ -52,9 +52,9 @@
                     [strongSelf showConnectionErrorAlert];
                     return;
                 }
-        
-                APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] initWithToken:token room:roomName];
-                [videoViewController setProviderImage:[UIImage imageNamed:@"iLobby_logo_call_small.png"]];
+                APGVideoConnectionControllerOptions *options = [[APGVideoConnectionControllerOptions alloc] init];
+                options.appIcon = UIImagePNGRepresentation([UIImage imageNamed:@"iLobby_logo_call_small"]);
+                APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] initWithToken:token room:roomName options:options];
                 videoViewController.connectOnLaunch = YES;
                 [strongSelf presentViewController:videoViewController animated:YES completion:nil];
             });

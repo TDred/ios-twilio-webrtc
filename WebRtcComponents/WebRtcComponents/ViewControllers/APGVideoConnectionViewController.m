@@ -38,26 +38,29 @@
 
 -(instancetype)init
 {
-    return [self initWithToken:nil room:nil];
+    return [self initWithToken:nil room:nil options:nil];
 }
 
--(instancetype)initWithToken:(NSString *)token
+-(instancetype)initWithToken:(NSString *)token options:(APGVideoConnectionControllerOptions *)options
 {
-    return [self initWithToken:token room:nil];
+    return [self initWithToken:token room:nil options:options];
 }
 
--(instancetype)initWithToken:(NSString *)token room:(NSString *)room
+-(instancetype)initWithToken:(NSString *)token room:(NSString *)room options:(APGVideoConnectionControllerOptions *)options
 {
     self = [super init];
     if (!self) {
         return nil;
     }
     
-    //TODO:make external setup
-    self.configuration = [[CXProviderConfiguration alloc] initWithLocalizedName:@"iLobby"];
+    self.configuration = [[CXProviderConfiguration alloc] initWithLocalizedName:options.displayName ? options.displayName : @"iLobby"];
     self.configuration.supportsVideo = true;
     self.configuration.maximumCallsPerCallGroup = 1;
-    //TODO:make external setup
+    
+    if (options) {
+        self.configuration.ringtoneSound = options.ringtone;
+        self.configuration.iconTemplateImageData = options.appIcon;
+    }
     
     self.provider = [[CXProvider alloc] initWithConfiguration:self.configuration];
     [self.provider setDelegate:self queue:nil];
@@ -66,16 +69,6 @@
     self.token = token;
     self.roomName = room;
     return self;
-}
-
--(void)setProviderImage:(UIImage *)image
-{
-    [self.configuration setIconTemplateImageData:UIImagePNGRepresentation(image)];
-}
-
--(void)setRingtone:(NSString*)ringtone
-{
-    [self.configuration setRingtoneSound:ringtone];
 }
 
 #pragma mark - UIViewController
