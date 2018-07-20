@@ -11,7 +11,7 @@
 @interface APGVideoConnectionControllerOptions : NSObject
 
 @property (nonatomic, copy) NSString *ringtone;
-@property (nonatomic, copy) NSString *appIcon;
+@property (nonatomic, copy) NSData *appIcon;
 @property (nonatomic, copy) NSString *displayName;
 
 @end

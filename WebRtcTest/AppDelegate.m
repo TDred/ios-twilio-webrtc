@@ -6,6 +6,7 @@
 //  Copyright © 2018 Тимофей Буторин. All rights reserved.
 //
 
+#import <UserNotifications/UserNotifications.h>
 #import <WebRtcComponents/WebRtcComponents.h>
 #import <PushKit/PushKit.h>
 #import "AppDelegate.h"
@@ -27,6 +28,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.rootViewController = [[APGCredentialsViewController alloc] init];
     [self.window makeKeyAndVisible];
+    
+    [self registerForRemoteNotifications];
     
     self.pushRegistry = [[PKPushRegistry alloc] initWithQueue:nil];
     self.pushRegistry.delegate = self;
@@ -64,15 +67,19 @@
 
 #pragma mark - PKPushRegistryDelegate
 
-- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)pushCredentials forType:(PKPushType)type
-{
-    const char *data = [pushCredentials.token bytes];
+- (NSString *)extractToken:(NSData*)pushToken {
+    const char *data = [pushToken bytes];
     NSMutableString *token = [NSMutableString string];
     
-    for (NSUInteger i = 0; i < [pushCredentials.token length]; i++) {
+    for (NSUInteger i = 0; i < [pushToken length]; i++) {
         [token appendFormat:@"%02.2hhX", data[i]];
     }
-    
+    return [token copy];
+}
+
+- (void)pushRegistry:(PKPushRegistry *)registry didUpdatePushCredentials:(PKPushCredentials *)pushCredentials forType:(PKPushType)type
+{
+    NSString* token = [self extractToken:pushCredentials.token];
     NSLog(@"PK Push Registry Device Token: %@", [token lowercaseString]);
 }
 
@@ -97,6 +104,28 @@
             completion();
         });
     }];
+}
+
+#pragma mark - Push Notifications
+-(void)registerForRemoteNotifications
+{
+    [UNUserNotificationCenter currentNotificationCenter].delegate = self;
+    [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound completionHandler:^(BOOL granted, NSError *error) {
+        NSLog(@"Push notifications permission granted: %d", granted);
+        if (!granted){
+            return;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIApplication.sharedApplication registerForRemoteNotifications];
+        });
+    }];
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString* token = [self extractToken:deviceToken];
+    NSLog(@"Push Registry Device Token: %@", [token lowercaseString]);
 }
 
 
