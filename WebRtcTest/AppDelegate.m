@@ -87,7 +87,7 @@
 {
     NSString *room = payload.dictionaryPayload[@"room"];
     APGVideoAuthService *authService = [APGVideoAuthService sharedService];
-    [authService getAuthToken:@"Bob" fromURL:nil completionBlock:^(NSString *token) {
+    [authService getAuthToken:@"Bob" completionBlock:^(NSString *token) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!token) {
                 NSLog(@"Error getting access token");

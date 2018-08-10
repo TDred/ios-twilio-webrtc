@@ -11,10 +11,11 @@
 #import "APGVideoAuthService.h"
 #import "APGCredentialsView.h"
 
-@interface APGCredentialsViewController ()
+@interface APGCredentialsViewController () <APGVideoConnectionViewControllerDelegate>
 
 @property (nonatomic) APGCredentialsView* credentialsView;
 
+@property (nonatomic, copy) NSString *roomName;
 
 @end
 
@@ -40,11 +41,11 @@
 
 -(void)didEnterCredentials:(NSString *)identity roomName:(NSString *)roomName
 {
-    
+    self.roomName = roomName;
     APGVideoAuthService *authService = [APGVideoAuthService sharedService];
     
     __weak APGCredentialsViewController* weakSelf = self;
-    [authService getAuthToken:identity fromURL:nil completionBlock:^(NSString *token) {
+    [authService getAuthToken:identity completionBlock:^(NSString *token) {
         APGCredentialsViewController *strongSelf = weakSelf;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [strongSelf.credentialsView didEndLoad];
@@ -52,10 +53,12 @@
                     [strongSelf showConnectionErrorAlert];
                     return;
                 }
+                
                 APGVideoConnectionControllerOptions *options = [[APGVideoConnectionControllerOptions alloc] init];
                 options.appIcon = UIImagePNGRepresentation([UIImage imageNamed:@"iLobby_logo_call_small"]);
                 APGVideoConnectionViewController *videoViewController = [[APGVideoConnectionViewController alloc] initWithToken:token room:roomName options:options];
                 videoViewController.connectOnLaunch = YES;
+                videoViewController.delegate = self;
                 [strongSelf presentViewController:videoViewController animated:YES completion:nil];
             });
     }];
@@ -68,6 +71,19 @@
     UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
     [alertController addAction:dismissAction];
     [self presentViewController:alertController animated:YES  completion:nil];
+}
+
+- (void)callEnded:(id)sender
+{
+    self.roomName = nil;
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)callStarted:(id)sender
+{
+    APGVideoAuthService *authService = [APGVideoAuthService sharedService];
+    [authService sendCallNotification:self.roomName device:@"3b1ffa6e54a54f3eac5a5a555c658bea"];
+    
 }
 
 @end

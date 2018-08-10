@@ -275,6 +275,13 @@
     self.remoteView = nil;
 }
 
+-(void)removeLocalVideoTrack:(TVILocalVideoTrack *)videoTrack
+{
+    [videoTrack removeRenderer:self.previewView];
+    [self.previewView removeFromSuperview];
+    self.previewView = nil;
+}
+
 -(void)setNeedsMirrorCamera:(BOOL)mirror
 {
     self.previewView.mirror = mirror;

@@ -11,6 +11,8 @@
 @interface APGVideoAuthService : NSObject
 
 +(APGVideoAuthService*)sharedService;
--(void)getAuthToken : (NSString*)userName fromURL : (NSString*)URL completionBlock : (void(^)(NSString*))completionBlock;
+
+-(void)sendCallNotification : (NSString*)room device:(NSString*) hardwareId;
+-(void)getAuthToken : (NSString*)userName completionBlock : (void(^)(NSString*))completionBlock;
 
 @end

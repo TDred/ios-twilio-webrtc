@@ -17,6 +17,8 @@
 @property (nonatomic) APGVideoConnectionView *connectionView;
 @property (nonatomic, copy) NSString* token;
 @property (nonatomic, copy) NSString* roomName;
+@property (nonatomic) NSTimer *timeoutTimer;
+@property (nonatomic) BOOL callStarted;
 
 #pragma mark - CallKit
 @property (nonatomic) CXProvider *provider;
@@ -76,7 +78,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.audioDevice = [TVIDefaultAudioDevice audioDevice];
-    TwilioVideo.audioDevice = self.audioDevice;
+    if (!TwilioVideo.audioDevice) {
+        TwilioVideo.audioDevice = self.audioDevice;
+    }
     
     if (self.controlsColor && self.controlsHighlightColor) {
         self.connectionView = [[APGVideoConnectionView alloc] initWithColor:self.controlsColor highlightColor:self.controlsHighlightColor];
@@ -151,12 +155,25 @@
 #pragma mark - CRVideoViewDelegate
 -(void)endCall
 {
-    [self performEndCallAction:self.room.uuid];
-    if (!self.delegate && self.presentingViewController) {
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"Ending call, room UUID: %@", self.room.uuid);
+    
+    if (!self.room.uuid) {
+        NSArray<CXCall*> *calls = self.controller.callObserver.calls;
+        for (CXCall *call in calls) {
+            if (call.UUID) {
+                NSLog(@"Cannot obtain a call from room UUID, ending first outgoing call");
+                [self performEndCallAction:call.UUID];
+            }
+        }
     } else {
-        [self.delegate callEnded:self];
+        [self performEndCallAction:self.room.uuid];
     }
+    
+    //cleanup
+    self.localAudioTrack = nil;
+    self.room = nil;
+    [self.connectionView removeLocalVideoTrack:self.localVideoTrack];
+    [self.delegate callEnded:self];
 }
 
 -(void)switchCamera
@@ -464,17 +481,22 @@
 -(void)provider:(CXProvider *)provider timedOutPerformingAction:(CXAction *)action
 {
     NSLog(@"Provider timed out performing action: %@", action);
+    
+    [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    [self.delegate callFailed:self];
 }
 
 -(void)provider:(CXProvider *)provider performStartCallAction:(CXStartCallAction *)action
 {
     NSLog(@"Provider started a call");
+    self.callStarted = YES;
     [self.audioDevice setEnabled:NO];
     self.audioDevice.block();
     
     [self performRoomConnect:action.callUUID room:action.handle.value completion:^(BOOL success) {
         if (success) {
             [provider reportOutgoingCallWithUUID:action.callUUID connectedAtDate:[NSDate date]];
+            [self.delegate callStarted:self];
             [action fulfill];
         } else {
             [action fail];
@@ -490,6 +512,7 @@
     
     [self performRoomConnect:action.callUUID room:self.roomName completion:^(BOOL success) {
         if (success) {
+            [self.delegate callStarted:self];
             [action fulfillWithDateConnected:[NSDate date]];
         } else {
             [action fail];
@@ -547,6 +570,16 @@
     CXStartCallAction *startCallAction = [[CXStartCallAction alloc] initWithCallUUID:uuid handle:callHandle];
     [startCallAction setVideo:YES];
     
+    //TODO:start call timeout here.
+    if ([NSThread isMainThread]) {
+        [self setupTimer];
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self setupTimer];
+        });
+    }
+    [self setupTimer];
+                         
     CXTransaction *startCallTransaction = [[CXTransaction alloc] initWithAction:startCallAction];
     [self.controller requestTransaction:startCallTransaction completion:^(NSError *error) {
         if (error) {
@@ -556,6 +589,22 @@
         }
     }];
 }
+
+- (void)setupTimer {
+    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(timeoutTimerElapsed) userInfo:nil repeats:NO];
+}
+
+-(void)timeoutTimerElapsed
+{
+    NSLog(@"Timeout timer elapsed, call started: %d", self.callStarted);
+    if (self.callStarted) {
+        return;
+    }
+    
+    [self.connectionView updateConnectionStatus:APGConnectionStatusFailedToConnect];
+    [self.delegate callFailed:self];
+}
+
 
 -(void)performEndCallAction:(NSUUID *)uuid
 {
