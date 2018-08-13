@@ -318,4 +318,9 @@
     }
 }
 
+-(void)setEndCallButtonEnabled:(BOOL)enabled
+{
+    self.btnEndCall.enabled = enabled;
+}
+
 @end

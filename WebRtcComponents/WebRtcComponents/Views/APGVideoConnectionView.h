@@ -22,5 +22,6 @@
 -(void)removeLocalVideoTrack:(TVILocalVideoTrack*)videoTrack;
 -(void)setNeedsMirrorCamera:(BOOL)mirror;
 -(void)updateConnectionStatus:(APGConnectionStatus)connectionStatus;
+-(void)setEndCallButtonEnabled:(BOOL)enabled;
 
 @end

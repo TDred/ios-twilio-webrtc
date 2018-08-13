@@ -10,7 +10,6 @@
 
 @protocol APGVideoConnectionViewControllerDelegate <NSObject>
 
-@required
 -(void)callEnded:(id)sender;
 -(void)callStarted:(id)sender;
 -(void)callFailed:(id)sender;

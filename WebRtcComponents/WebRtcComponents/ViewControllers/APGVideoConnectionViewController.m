@@ -156,6 +156,7 @@
 -(void)endCall
 {
     NSLog(@"Ending call, room UUID: %@", self.room.uuid);
+    self.connectionView.setEndCallButtonEnabled(NO);
     
     if (!self.room.uuid) {
         NSArray<CXCall*> *calls = self.controller.callObserver.calls;
@@ -173,7 +174,9 @@
     self.localAudioTrack = nil;
     self.room = nil;
     [self.connectionView removeLocalVideoTrack:self.localVideoTrack];
+    NSLog(@"Cleanup completed");
     [self.delegate callEnded:self];
+    self.connectionView.setEndCallButtonEnabled(YES);
 }
 
 -(void)switchCamera

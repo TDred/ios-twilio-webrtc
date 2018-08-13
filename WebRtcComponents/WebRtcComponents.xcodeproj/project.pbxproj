@@ -137,6 +137,7 @@
 				6B7D839920DAA2D000B3C601 /* APGConnectionStatus.h */,
 				6B7D839B20DAA2D000B3C601 /* UIButton+APGButtonThemes.h */,
 				6B7D839620DAA2D000B3C601 /* UIButton+APGButtonThemes.m */,
+				4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */,
 				6B7D839A20DAA2D000B3C601 /* APGUtils.h */,
 				423EA21920FCEE8700BFA000 /* APGVideoConnectionControllerOptions.h */,
 				423EA21A20FCEE8700BFA000 /* APGVideoConnectionControllerOptions.m */,
@@ -148,7 +149,6 @@
 			isa = PBXGroup;
 			children = (
 				6B7D839420DAA2A900B3C601 /* APGVideoViewDelegate.h */,
-				4290DB7A20DD1347002E78AE /* APGVideoConnectionViewControllerDelegate.h */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
